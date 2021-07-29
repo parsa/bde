@@ -3974,11 +3974,11 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
@@ -3992,40 +3992,40 @@ void TestConfigurationMacros()
 
 //=================================== OPT ===================================//
 
-// [1] Reset all configuration macros
-
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
-
-// [2] Define the macros for this test case.
-
-#define BDE_BUILD_TARGET_OPT
-
-// [3] Re-include the 'bsls_review.h' header.
-
-#include <bsls_review.h>
-
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
-
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
-
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
-
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
-
-// [5] Test that the public review macros have the expected effect.
-
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
-
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+// // [1] Reset all configuration macros
+// 
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
+// 
+// // [2] Define the macros for this test case.
+// 
+// #define BDE_BUILD_TARGET_OPT
+// 
+// // [3] Re-include the 'bsls_review.h' header.
+// 
+// #include <bsls_review.h>
+// 
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
+// 
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
+// 
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
+// 
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
+// 
+// // [5] Test that the public review macros have the expected effect.
+// 
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
+// 
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
 //=================================== DBG ===================================//
 
@@ -4045,11 +4045,11 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
@@ -4080,7 +4080,7 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if defined(BSLS_REVIEW_IS_ACTIVE)
@@ -4117,15 +4117,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4149,15 +4149,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4181,15 +4181,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4214,15 +4214,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4245,15 +4245,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4277,15 +4277,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4309,15 +4309,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4342,15 +4342,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4374,15 +4374,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4407,15 +4407,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4440,15 +4440,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4474,15 +4474,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -7053,126 +7053,126 @@ void TestConfigurationMacros()
 
 //======================= LEVEL_ASSERT_OPT LEVEL_NONE =======================//
 
-// [1] Reset all configuration macros
-
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
-
-// [2] Define the macros for this test case.
-
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
-#define BSLS_REVIEW_LEVEL_NONE
-
-// [3] Re-include the 'bsls_review.h' header.
-
-#include <bsls_review.h>
-
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
-
-#if defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should not be defined
-#endif
-
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
-
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
-
-// [5] Test that the public review macros have the expected effect.
-
-    try { BSLS_REVIEW_OPT(false);       ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
-
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
-
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+// // [1] Reset all configuration macros
+// 
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
+// 
+// // [2] Define the macros for this test case.
+// 
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BSLS_REVIEW_LEVEL_NONE
+// 
+// // [3] Re-include the 'bsls_review.h' header.
+// 
+// #include <bsls_review.h>
+// 
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
+// 
+// #if defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should not be defined
+// #endif
+// 
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
+// 
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
+// 
+// // [5] Test that the public review macros have the expected effect.
+// 
+//     try { BSLS_REVIEW_OPT(false);       ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
+// 
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
+// 
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
 //========================= LEVEL_ASSERT LEVEL_NONE =========================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT
-#define BSLS_REVIEW_LEVEL_NONE
+// #define BSLS_ASSERT_LEVEL_ASSERT
+// #define BSLS_REVIEW_LEVEL_NONE
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public review macros have the expected effect.
+// // [5] Test that the public review macros have the expected effect.
 
-    try { BSLS_REVIEW_OPT(false);       ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_OPT(false);       ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
 //====================== LEVEL_ASSERT_SAFE LEVEL_NONE =======================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
-#define BSLS_REVIEW_LEVEL_NONE
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BSLS_REVIEW_LEVEL_NONE
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public review macros have the expected effect.
+// // [5] Test that the public review macros have the expected effect.
 
-    try { BSLS_REVIEW_OPT(false);       ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_OPT(false);       ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
 //======================= LEVEL_NONE LEVEL_REVIEW_OPT =======================//
 
@@ -7328,117 +7328,117 @@ void TestConfigurationMacros()
 
 //==================== LEVEL_ASSERT_OPT LEVEL_REVIEW_OPT ====================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
-#define BSLS_REVIEW_LEVEL_REVIEW_OPT
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BSLS_REVIEW_LEVEL_REVIEW_OPT
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public review macros have the expected effect.
+// // [5] Test that the public review macros have the expected effect.
 
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
 //====================== LEVEL_ASSERT LEVEL_REVIEW_OPT ======================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT
-#define BSLS_REVIEW_LEVEL_REVIEW_OPT
+// #define BSLS_ASSERT_LEVEL_ASSERT
+// #define BSLS_REVIEW_LEVEL_REVIEW_OPT
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public review macros have the expected effect.
+// // [5] Test that the public review macros have the expected effect.
 
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
 //=================== LEVEL_ASSERT_SAFE LEVEL_REVIEW_OPT ====================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
-#define BSLS_REVIEW_LEVEL_REVIEW_OPT
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BSLS_REVIEW_LEVEL_REVIEW_OPT
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public review macros have the expected effect.
+// // [5] Test that the public review macros have the expected effect.
 
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
 //========================= LEVEL_NONE LEVEL_REVIEW =========================//
 
@@ -7582,108 +7582,108 @@ void TestConfigurationMacros()
 
 //====================== LEVEL_ASSERT_OPT LEVEL_REVIEW ======================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
-#define BSLS_REVIEW_LEVEL_REVIEW
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BSLS_REVIEW_LEVEL_REVIEW
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public review macros have the expected effect.
+// // [5] Test that the public review macros have the expected effect.
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
 //======================== LEVEL_ASSERT LEVEL_REVIEW ========================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT
-#define BSLS_REVIEW_LEVEL_REVIEW
+// #define BSLS_ASSERT_LEVEL_ASSERT
+// #define BSLS_REVIEW_LEVEL_REVIEW
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public review macros have the expected effect.
+// // [5] Test that the public review macros have the expected effect.
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
 //===================== LEVEL_ASSERT_SAFE LEVEL_REVIEW ======================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
-#define BSLS_REVIEW_LEVEL_REVIEW
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BSLS_REVIEW_LEVEL_REVIEW
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public review macros have the expected effect.
+// // [5] Test that the public review macros have the expected effect.
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
 //====================== LEVEL_NONE LEVEL_REVIEW_SAFE =======================//
 
@@ -7815,97 +7815,97 @@ void TestConfigurationMacros()
 
 //=================== LEVEL_ASSERT_OPT LEVEL_REVIEW_SAFE ====================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
-#define BSLS_REVIEW_LEVEL_REVIEW_SAFE
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BSLS_REVIEW_LEVEL_REVIEW_SAFE
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #endif
 
-// [5] Test that the public review macros have the expected effect.
+// // [5] Test that the public review macros have the expected effect.
 
 //===================== LEVEL_ASSERT LEVEL_REVIEW_SAFE ======================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT
-#define BSLS_REVIEW_LEVEL_REVIEW_SAFE
+// #define BSLS_ASSERT_LEVEL_ASSERT
+// #define BSLS_REVIEW_LEVEL_REVIEW_SAFE
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #endif
 
-// [5] Test that the public review macros have the expected effect.
+// // [5] Test that the public review macros have the expected effect.
 
 //=================== LEVEL_ASSERT_SAFE LEVEL_REVIEW_SAFE ===================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_REVIEW_MACRORESET
-#include <bsls_review_macroreset.h>
+// #undef INCLUDED_BSLS_REVIEW_MACRORESET
+// #include <bsls_review_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
-#define BSLS_REVIEW_LEVEL_REVIEW_SAFE
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BSLS_REVIEW_LEVEL_REVIEW_SAFE
 
-// [3] Re-include the 'bsls_review.h' header.
+// // [3] Re-include the 'bsls_review.h' header.
 
-#include <bsls_review.h>
+// #include <bsls_review.h>
 
-// [4] Test the values of the 3 'IS_ACTIVE' macros.
+// // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #endif
 
 // [5] Test that the public review macros have the expected effect.
 //----------------------------------------------------------------END GENERATED

@@ -2412,6 +2412,12 @@ int AssertViolation::lineNumber() const
 ..._LEVEL_ASSUME_ASSERT and ..._LEVEL_ASSUME_SAFE
 #endif
 
+
+// none experiment:
+#if defined(BSLS_ASSERT_IS_USED)  // assert macros should not even odr-use their expressions
+   #error "bsls_assert should not be used"
+#endif
+
 #endif
 
 // ----------------------------------------------------------------------------
