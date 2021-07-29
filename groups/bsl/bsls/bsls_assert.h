@@ -2412,6 +2412,11 @@ int AssertViolation::lineNumber() const
 ..._LEVEL_ASSUME_ASSERT and ..._LEVEL_ASSUME_SAFE
 #endif
 
+// assume experiment:
+#if !defined(BSLS_ASSERT_IS_ASSUMED)
+    #error "bsls_assert should be assumed"
+#endif
+
 #endif
 
 // ----------------------------------------------------------------------------

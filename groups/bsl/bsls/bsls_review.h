@@ -1,5 +1,9 @@
 // bsls_review.h                                                      -*-C++-*-
 #ifndef INCLUDED_BSLS_REVIEW
+
+// assume experiment:
+//#define BSLS_ASSERT_LEVEL_NONE
+#define BSLS_ASSERT_LEVEL_ASSUME_ASSERT
 #define INCLUDED_BSLS_REVIEW
 
 #include <bsls_ident.h>

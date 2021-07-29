@@ -3974,11 +3974,11 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
@@ -4008,7 +4008,7 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if defined(BSLS_REVIEW_IS_ACTIVE)
@@ -4045,11 +4045,11 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
@@ -4080,7 +4080,7 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if defined(BSLS_REVIEW_IS_ACTIVE)
@@ -4117,15 +4117,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4149,15 +4149,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4181,15 +4181,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4214,15 +4214,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4245,15 +4245,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4277,15 +4277,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4309,15 +4309,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4342,15 +4342,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4374,15 +4374,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4407,15 +4407,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4440,15 +4440,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
@@ -4474,15 +4474,15 @@ void TestConfigurationMacros()
 // [4] Test the values of the 3 'IS_ACTIVE' macros.
 
 #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_IS_ACTIVE should be defined
 #endif
 
 #if !defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should be defined
 #endif
 
 // [5] Test that the public review macros have the expected effect.
