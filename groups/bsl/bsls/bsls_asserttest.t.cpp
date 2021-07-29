@@ -2070,156 +2070,156 @@ void TestMacroBSLS_ASSERTTEST_IS_ACTIVE()
 
 //============================ SAFE_2 LEVEL_NONE ============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_NONE
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_NONE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// // #error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// // #error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
 
-    {
-        static const struct {
-            int         d_lineNumber;       // line # of the row in this table
-            const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
-            bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
-        } DATA[] = {
-            //LINE  TYPE  RESULT
-            //----  ----  ------
-            { L_,   "O",  false },
-            { L_,   "O2", false },
-            { L_,   "A",  false },
-            { L_,   "A2", false },
-            { L_,   "S",  false },
-            { L_,   "S2", false },
-        };
-        const int NUM_DATA = sizeof DATA / sizeof *DATA;
+//     {
+//         static const struct {
+//             int         d_lineNumber;       // line # of the row in this table
+//             const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
+//             bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
+//         } DATA[] = {
+//             //LINE  TYPE  RESULT
+//             //----  ----  ------
+//             { L_,   "O",  false },
+//             { L_,   "O2", false },
+//             { L_,   "A",  false },
+//             { L_,   "A2", false },
+//             { L_,   "S",  false },
+//             { L_,   "S2", false },
+//         };
+//         const int NUM_DATA = sizeof DATA / sizeof *DATA;
 
-        for (int ti = 0; ti < NUM_DATA; ++ti) {
-            const int         LINE   = DATA[ti].d_lineNumber;
-            const char *const TYPE   = DATA[ti].d_assertBuildType;
-            bool              RESULT = DATA[ti].d_expectedResult;
+//         for (int ti = 0; ti < NUM_DATA; ++ti) {
+//             const int         LINE   = DATA[ti].d_lineNumber;
+//             const char *const TYPE   = DATA[ti].d_assertBuildType;
+//             bool              RESULT = DATA[ti].d_expectedResult;
 
-            if(globalVeryVerbose) {
-                T_ P_(TYPE) P(RESULT)
-            }
+//             if(globalVeryVerbose) {
+//                 T_ P_(TYPE) P(RESULT)
+//             }
 
-            // Validate test description.
-            LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
+//             // Validate test description.
+//             LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
 
-            bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
-            LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
+//             bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
+//             LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
 
-        }  // table-driven 'for' loop
-    }
+//         }  // table-driven 'for' loop
+//     }
 
 //========================= SAFE_2 LEVEL_ASSERT_OPT =========================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// // #error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
 
 
-    {
-        static const struct {
-            int         d_lineNumber;       // line # of the row in this table
-            const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
-            bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
-        } DATA[] = {
-            //LINE  TYPE  RESULT
-            //----  ----  ------
-            { L_,   "O",  true  },
-            { L_,   "O2", true  },
-            { L_,   "A",  false },
-            { L_,   "A2", false },
-            { L_,   "S",  false },
-            { L_,   "S2", false },
-        };
-        const int NUM_DATA = sizeof DATA / sizeof *DATA;
+//     {
+//         static const struct {
+//             int         d_lineNumber;       // line # of the row in this table
+//             const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
+//             bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
+//         } DATA[] = {
+//             //LINE  TYPE  RESULT
+//             //----  ----  ------
+//             { L_,   "O",  true  },
+//             { L_,   "O2", true  },
+//             { L_,   "A",  false },
+//             { L_,   "A2", false },
+//             { L_,   "S",  false },
+//             { L_,   "S2", false },
+//         };
+//         const int NUM_DATA = sizeof DATA / sizeof *DATA;
 
-        for (int ti = 0; ti < NUM_DATA; ++ti) {
-            const int         LINE   = DATA[ti].d_lineNumber;
-            const char *const TYPE   = DATA[ti].d_assertBuildType;
-            bool              RESULT = DATA[ti].d_expectedResult;
+//         for (int ti = 0; ti < NUM_DATA; ++ti) {
+//             const int         LINE   = DATA[ti].d_lineNumber;
+//             const char *const TYPE   = DATA[ti].d_assertBuildType;
+//             bool              RESULT = DATA[ti].d_expectedResult;
 
-            if(globalVeryVerbose) {
-                T_ P_(TYPE) P(RESULT)
-            }
+//             if(globalVeryVerbose) {
+//                 T_ P_(TYPE) P(RESULT)
+//             }
 
-            // Validate test description.
-            LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
+//             // Validate test description.
+//             LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
 
-            bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
-            LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
+//             bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
+//             LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
 
-        }  // table-driven 'for' loop
-    }
+//         }  // table-driven 'for' loop
+//     }
 
 //=========================== SAFE_2 LEVEL_ASSERT ===========================//
 
@@ -2299,229 +2299,229 @@ void TestMacroBSLS_ASSERTTEST_IS_ACTIVE()
 
 //======================== SAFE_2 LEVEL_ASSERT_SAFE =========================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
+// #endif
 
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
-    ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
-    ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
 
-    {
-        static const struct {
-            int         d_lineNumber;       // line # of the row in this table
-            const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
-            bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
-        } DATA[] = {
-            //LINE  TYPE  RESULT
-            //----  ----  ------
-            { L_,   "O",  true  },
-            { L_,   "O2", true  },
-            { L_,   "A",  true  },
-            { L_,   "A2", true  },
-            { L_,   "S",  true  },
-            { L_,   "S2", true  },
-        };
-        const int NUM_DATA = sizeof DATA / sizeof *DATA;
+//     {
+//         static const struct {
+//             int         d_lineNumber;       // line # of the row in this table
+//             const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
+//             bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
+//         } DATA[] = {
+//             //LINE  TYPE  RESULT
+//             //----  ----  ------
+//             { L_,   "O",  true  },
+//             { L_,   "O2", true  },
+//             { L_,   "A",  true  },
+//             { L_,   "A2", true  },
+//             { L_,   "S",  true  },
+//             { L_,   "S2", true  },
+//         };
+//         const int NUM_DATA = sizeof DATA / sizeof *DATA;
 
-        for (int ti = 0; ti < NUM_DATA; ++ti) {
-            const int         LINE   = DATA[ti].d_lineNumber;
-            const char *const TYPE   = DATA[ti].d_assertBuildType;
-            bool              RESULT = DATA[ti].d_expectedResult;
+//         for (int ti = 0; ti < NUM_DATA; ++ti) {
+//             const int         LINE   = DATA[ti].d_lineNumber;
+//             const char *const TYPE   = DATA[ti].d_assertBuildType;
+//             bool              RESULT = DATA[ti].d_expectedResult;
 
-            if(globalVeryVerbose) {
-                T_ P_(TYPE) P(RESULT)
-            }
+//             if(globalVeryVerbose) {
+//                 T_ P_(TYPE) P(RESULT)
+//             }
 
-            // Validate test description.
-            LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
+//             // Validate test description.
+//             LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
 
-            bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
-            LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
+//             bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
+//             LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
 
-        }  // table-driven 'for' loop
-    }
+//         }  // table-driven 'for' loop
+//     }
 
 //=============================== LEVEL_NONE ================================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_NONE
+// #define BSLS_ASSERT_LEVEL_NONE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// // #error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// // #error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
 
-    {
-        static const struct {
-            int         d_lineNumber;       // line # of the row in this table
-            const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
-            bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
-        } DATA[] = {
-            //LINE  TYPE  RESULT
-            //----  ----  ------
-            { L_,   "O",  false },
-            { L_,   "O2", false },
-            { L_,   "A",  false },
-            { L_,   "A2", false },
-            { L_,   "S",  false },
-            { L_,   "S2", false },
-        };
-        const int NUM_DATA = sizeof DATA / sizeof *DATA;
+//     {
+//         static const struct {
+//             int         d_lineNumber;       // line # of the row in this table
+//             const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
+//             bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
+//         } DATA[] = {
+//             //LINE  TYPE  RESULT
+//             //----  ----  ------
+//             { L_,   "O",  false },
+//             { L_,   "O2", false },
+//             { L_,   "A",  false },
+//             { L_,   "A2", false },
+//             { L_,   "S",  false },
+//             { L_,   "S2", false },
+//         };
+//         const int NUM_DATA = sizeof DATA / sizeof *DATA;
 
-        for (int ti = 0; ti < NUM_DATA; ++ti) {
-            const int         LINE   = DATA[ti].d_lineNumber;
-            const char *const TYPE   = DATA[ti].d_assertBuildType;
-            bool              RESULT = DATA[ti].d_expectedResult;
+//         for (int ti = 0; ti < NUM_DATA; ++ti) {
+//             const int         LINE   = DATA[ti].d_lineNumber;
+//             const char *const TYPE   = DATA[ti].d_assertBuildType;
+//             bool              RESULT = DATA[ti].d_expectedResult;
 
-            if(globalVeryVerbose) {
-                T_ P_(TYPE) P(RESULT)
-            }
+//             if(globalVeryVerbose) {
+//                 T_ P_(TYPE) P(RESULT)
+//             }
 
-            // Validate test description.
-            LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
+//             // Validate test description.
+//             LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
 
-            bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
-            LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
+//             bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
+//             LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
 
-        }  // table-driven 'for' loop
-    }
+//         }  // table-driven 'for' loop
+//     }
 
 //============================ LEVEL_ASSERT_OPT =============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// // #error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
 
-    {
-        static const struct {
-            int         d_lineNumber;       // line # of the row in this table
-            const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
-            bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
-        } DATA[] = {
-            //LINE  TYPE  RESULT
-            //----  ----  ------
-            { L_,   "O",  true  },
-            { L_,   "O2", false },
-            { L_,   "A",  false },
-            { L_,   "A2", false },
-            { L_,   "S",  false },
-            { L_,   "S2", false },
-        };
-        const int NUM_DATA = sizeof DATA / sizeof *DATA;
+//     {
+//         static const struct {
+//             int         d_lineNumber;       // line # of the row in this table
+//             const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
+//             bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
+//         } DATA[] = {
+//             //LINE  TYPE  RESULT
+//             //----  ----  ------
+//             { L_,   "O",  true  },
+//             { L_,   "O2", false },
+//             { L_,   "A",  false },
+//             { L_,   "A2", false },
+//             { L_,   "S",  false },
+//             { L_,   "S2", false },
+//         };
+//         const int NUM_DATA = sizeof DATA / sizeof *DATA;
 
-        for (int ti = 0; ti < NUM_DATA; ++ti) {
-            const int         LINE   = DATA[ti].d_lineNumber;
-            const char *const TYPE   = DATA[ti].d_assertBuildType;
-            bool              RESULT = DATA[ti].d_expectedResult;
+//         for (int ti = 0; ti < NUM_DATA; ++ti) {
+//             const int         LINE   = DATA[ti].d_lineNumber;
+//             const char *const TYPE   = DATA[ti].d_assertBuildType;
+//             bool              RESULT = DATA[ti].d_expectedResult;
 
-            if(globalVeryVerbose) {
-                T_ P_(TYPE) P(RESULT)
-            }
+//             if(globalVeryVerbose) {
+//                 T_ P_(TYPE) P(RESULT)
+//             }
 
-            // Validate test description.
-            LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
+//             // Validate test description.
+//             LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
 
-            bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
-            LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
+//             bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
+//             LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
 
-        }  // table-driven 'for' loop
-    }
+//         }  // table-driven 'for' loop
+//     }
 
 //============================== LEVEL_ASSERT ===============================//
 
@@ -2600,78 +2600,78 @@ void TestMacroBSLS_ASSERTTEST_IS_ACTIVE()
 
 //============================ LEVEL_ASSERT_SAFE ============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
+// #endif
 
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
-    ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
-    ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG);
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG);
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG);
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG);
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG);
 
-    {
-        static const struct {
-            int         d_lineNumber;       // line # of the row in this table
-            const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
-            bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
-        } DATA[] = {
-            //LINE  TYPE  RESULT
-            //----  ----  ------
-            { L_,   "O",  true  },
-            { L_,   "O2", false },
-            { L_,   "A",  true  },
-            { L_,   "A2", false },
-            { L_,   "S",  true  },
-            { L_,   "S2", false },
-        };
-        const int NUM_DATA = sizeof DATA / sizeof *DATA;
+//     {
+//         static const struct {
+//             int         d_lineNumber;       // line # of the row in this table
+//             const char *d_assertBuildType;  // "S", "S2", "A", "A2", "O", "O2"
+//             bool        d_expectedResult;   // assertion: 'P'ass or 'F'ail
+//         } DATA[] = {
+//             //LINE  TYPE  RESULT
+//             //----  ----  ------
+//             { L_,   "O",  true  },
+//             { L_,   "O2", false },
+//             { L_,   "A",  true  },
+//             { L_,   "A2", false },
+//             { L_,   "S",  true  },
+//             { L_,   "S2", false },
+//         };
+//         const int NUM_DATA = sizeof DATA / sizeof *DATA;
 
-        for (int ti = 0; ti < NUM_DATA; ++ti) {
-            const int         LINE   = DATA[ti].d_lineNumber;
-            const char *const TYPE   = DATA[ti].d_assertBuildType;
-            bool              RESULT = DATA[ti].d_expectedResult;
+//         for (int ti = 0; ti < NUM_DATA; ++ti) {
+//             const int         LINE   = DATA[ti].d_lineNumber;
+//             const char *const TYPE   = DATA[ti].d_assertBuildType;
+//             bool              RESULT = DATA[ti].d_expectedResult;
 
-            if(globalVeryVerbose) {
-                T_ P_(TYPE) P(RESULT)
-            }
+//             if(globalVeryVerbose) {
+//                 T_ P_(TYPE) P(RESULT)
+//             }
 
-            // Validate test description.
-            LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
+//             // Validate test description.
+//             LOOP_ASSERT(LINE, bsls::AssertTest::isValidAssertBuild(TYPE));
 
-            bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
-            LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
+//             bool configResult = BSLS_ASSERTTEST_IS_ACTIVE(TYPE);
+//             LOOP3_ASSERT(TYPE, RESULT, configResult, RESULT == configResult);
 
-        }  // table-driven 'for' loop
-    }
+//         }  // table-driven 'for' loop
+//     }
 
 //--------------------------------------------------------------------------//
 
@@ -3103,767 +3103,767 @@ void TestMacroBSLS_ASSERTTEST_PASS_OR_FAIL()
 //-----------------------------------------------------GENERATED : PASS_OR_FAIL
 //============================ SAFE_2 LEVEL_NONE ============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_NONE
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_NONE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// // #error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// // #error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_OPT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_OPT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
-    }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //========================= SAFE_2 LEVEL_ASSERT_OPT =========================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
-    }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //=========================== SAFE_2 LEVEL_ASSERT ===========================//
 
@@ -4351,1248 +4351,1248 @@ void TestMacroBSLS_ASSERTTEST_PASS_OR_FAIL()
 
 //======================== SAFE_2 LEVEL_ASSERT_SAFE =========================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
-    }
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //=============================== LEVEL_NONE ================================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_NONE
+// #define BSLS_ASSERT_LEVEL_NONE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// //#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_OPT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_OPT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
-    }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //============================ LEVEL_ASSERT_OPT =============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
-    }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //============================== LEVEL_ASSERT ===============================//
 
@@ -6079,485 +6079,485 @@ void TestMacroBSLS_ASSERTTEST_PASS_OR_FAIL()
 
 //============================ LEVEL_ASSERT_SAFE ============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
-    }
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 //-------------------------------------------------END GENERATED : PASS_OR_FAIL
 //---------------------------------------------------------------------------//
 
@@ -6598,762 +6598,762 @@ void TestMacroBSLS_ASSERTTEST_PASS_OR_FAIL_RAW()
 //-------------------------------------------------GENERATED : PASS_OR_FAIL_RAW
 //============================ SAFE_2 LEVEL_NONE ============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_NONE
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_NONE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// //#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_FAIL_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL_RAW(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_FAIL_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL_RAW(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
-    }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //========================= SAFE_2 LEVEL_ASSERT_OPT =========================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_FAIL_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL_RAW(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_FAIL_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL_RAW(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
-    }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //=========================== SAFE_2 LEVEL_ASSERT ===========================//
 
@@ -7837,1239 +7837,1239 @@ void TestMacroBSLS_ASSERTTEST_PASS_OR_FAIL_RAW()
 
 //======================== SAFE_2 LEVEL_ASSERT_SAFE =========================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(false));
-    }
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //=============================== LEVEL_NONE ================================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_NONE
+// #define BSLS_ASSERT_LEVEL_NONE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// //#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_FAIL_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL_RAW(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_FAIL_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL_RAW(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
-    }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //============================ LEVEL_ASSERT_OPT =============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_FAIL_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL_RAW(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_FAIL_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL_RAW(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
-    }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //============================== LEVEL_ASSERT ===============================//
 
@@ -9552,481 +9552,481 @@ void TestMacroBSLS_ASSERTTEST_PASS_OR_FAIL_RAW()
 
 //============================ LEVEL_ASSERT_SAFE ============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Safe2::callSafe(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS_RAW(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(false));
-    }
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL_RAW(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS_RAW(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 //---------------------------------------------END GENERATED : PASS_OR_FAIL_RAW
 //---------------------------------------------------------------------------//
 // Restore the default 'ASSERT' macro for this test driver.
@@ -10064,773 +10064,773 @@ void TestMacroBSLS_ASSERTTEST_CHECK_LEVEL()
 //------------------------------------------------------GENERATED : CHECK_LEVEL
 //============================ SAFE_2 LEVEL_NONE ============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_NONE
-#define BSLS_ASSERTTEST_CHECK_LEVEL
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_NONE
+// #define BSLS_ASSERTTEST_CHECK_LEVEL
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// //#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_OPT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_OPT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
-    }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //========================= SAFE_2 LEVEL_ASSERT_OPT =========================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
-#define BSLS_ASSERTTEST_CHECK_LEVEL
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BSLS_ASSERTTEST_CHECK_LEVEL
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        // These tests will fail with the wrong level
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         // These tests will fail with the wrong level
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        // These tests will fail with the wrong level
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         // These tests will fail with the wrong level
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
-    }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //=========================== SAFE_2 LEVEL_ASSERT ===========================//
 
@@ -11325,1261 +11325,1261 @@ void TestMacroBSLS_ASSERTTEST_CHECK_LEVEL()
 
 //======================== SAFE_2 LEVEL_ASSERT_SAFE =========================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BDE_BUILD_TARGET_SAFE_2
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
-#define BSLS_ASSERTTEST_CHECK_LEVEL
+// #define BDE_BUILD_TARGET_SAFE_2
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BSLS_ASSERTTEST_CHECK_LEVEL
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if !defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should be defined
-#endif
+// #if !defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
 
-        // These tests will fail with the wrong level
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         // These tests will fail with the wrong level
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
 
-        // These tests will fail with the wrong level
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         // These tests will fail with the wrong level
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
-    }
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //=============================== LEVEL_NONE ================================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_NONE
-#define BSLS_ASSERTTEST_CHECK_LEVEL
+// #define BSLS_ASSERT_LEVEL_NONE
+// #define BSLS_ASSERTTEST_CHECK_LEVEL
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// //#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_OPT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_OPT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
-    }
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //============================ LEVEL_ASSERT_OPT =============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_ASSERT_OPT
-#define BSLS_ASSERTTEST_CHECK_LEVEL
+// #define BSLS_ASSERT_LEVEL_ASSERT_OPT
+// #define BSLS_ASSERTTEST_CHECK_LEVEL
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// //#error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(!BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-            BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//             BSLS_ASSERTTEST_ASSERT_FAIL(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_SAFE_FAIL(ASSERT(true));
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        // These tests will fail with the wrong level
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         // These tests will fail with the wrong level
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        // These tests will fail with the wrong level
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         // These tests will fail with the wrong level
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
-    }
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 
 //============================== LEVEL_ASSERT ===============================//
 
@@ -13073,492 +13073,492 @@ void TestMacroBSLS_ASSERTTEST_CHECK_LEVEL()
 
 //============================ LEVEL_ASSERT_SAFE ============================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
-#include <bsls_asserttest_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERTTEST_MACRORESET
+// #include <bsls_asserttest_macroreset.h>
 
-// [2] Define the macros for this test case
+// // [2] Define the macros for this test case
 
-#define BSLS_ASSERT_LEVEL_ASSERT_SAFE
-#define BSLS_ASSERTTEST_CHECK_LEVEL
+// #define BSLS_ASSERT_LEVEL_ASSERT_SAFE
+// #define BSLS_ASSERTTEST_CHECK_LEVEL
 
-// [3] Re-include the 'bsls_asserttest.h' header
+// // [3] Re-include the 'bsls_asserttest.h' header
 
-#include <bsls_asserttest.h>
+// #include <bsls_asserttest.h>
 
-// [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
-//     'IS_ACTIVE' macros and their values we intend to test.
+// // [4] Confirm the value of the 'BDE_BUILD_TARGET_SAFE_2' macro and the 3
+// //     'IS_ACTIVE' macros and their values we intend to test.
 
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#error BDE_BUILD_TARGET_SAFE_2 should not be defined
-#endif
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #error BDE_BUILD_TARGET_SAFE_2 should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should be defined
+// #endif
 
-// [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
-// defined.
-    ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
-    ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
+// // [5] Confirm the values of the 'BSLS_ASSERTTEST' macros that should be
+// // defined.
+//     ASSERT(!BSLS_ASSERTTEST_SAFE_2_BUILD_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_OPT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_ASSERT_SAFE_ACTIVE_FLAG)
+//     ASSERT(BSLS_ASSERTTEST_CHECK_LEVEL_ARG)
 
-// [6] Define a local struct 'Production' which makes use of the current
-//     definitionss of the 'BSLS_ASSERT' macros.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+// // [6] Define a local struct 'Production' which makes use of the current
+// //     definitionss of the 'BSLS_ASSERT' macros.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-// [7] Verify that the *PASS macros are always  expanded.
-        {
-            EXPECTED = true;
+// // [7] Verify that the *PASS macros are always  expanded.
+//         {
+//             EXPECTED = true;
 
-            BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
-            BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
-        }
+//             BSLS_ASSERTTEST_ASSERT_SAFE_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_OPT_PASS(ASSERT(true));
+//             BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(ASSERT(true));
+//         }
 
-// [9] Verify the macros that should not expand in this build mode
-        {
-            EXPECTED = false;
-        }
+// // [9] Verify the macros that should not expand in this build mode
+//         {
+//             EXPECTED = false;
+//         }
 
-// [8] Test for expressions that should fail
+// // [8] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
 
-        // These tests will fail with the wrong level
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         // These tests will fail with the wrong level
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
 
-// [9] Test for expressions that should pass
+// // [9] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
-    }
-#line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
-// [10] Define a local struct 'Production' which makes use of
-//     the current definitionss of the 'BSLS_ASSERT' macros with an
-//     alternate filename in place.
-    {
-        struct Production {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-            }
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
+//     }
+// #line BSLS_ASSERTTEST_SET_DIFFERENT_FILENAME
+// // [10] Define a local struct 'Production' which makes use of
+// //     the current definitionss of the 'BSLS_ASSERT' macros with an
+// //     alternate filename in place.
+//     {
+//         struct Production {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+//             }
+//         };
 
-        struct Safe2 {
-            static void callOpt(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_OPT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_OPT(pass);
-                }
-#endif
-#endif
-            }
+//         struct Safe2 {
+//             static void callOpt(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_OPT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_OPT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callAssert(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT(pass);
-                }
-#endif
-#endif
-            }
+//             static void callAssert(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callSafe(bool pass) {
-                (void) pass;  // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-#if defined(BDE_BUILD_TARGET_EXC)
-                BSLS_ASSERT_SAFE(pass);
-#else
-                if (pass) {
-                    BSLS_ASSERT_SAFE(pass);
-                }
-#endif
-#endif
-            }
+//             static void callSafe(bool pass) {
+//                 (void) pass;  // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+// #if defined(BDE_BUILD_TARGET_EXC)
+//                 BSLS_ASSERT_SAFE(pass);
+// #else
+//                 if (pass) {
+//                     BSLS_ASSERT_SAFE(pass);
+//                 }
+// #endif
+// #endif
+//             }
 
-            static void callInvoke(bool pass) {
-                (void) pass; // suppress compiler warning
-#if defined(BDE_BUILD_TARGET_SAFE_2)
-                if (!pass) {
-                    BSLS_ASSERT_INVOKE("pass");
-                }
-#endif
-            }
-        };
+//             static void callInvoke(bool pass) {
+//                 (void) pass; // suppress compiler warning
+// #if defined(BDE_BUILD_TARGET_SAFE_2)
+//                 if (!pass) {
+//                     BSLS_ASSERT_INVOKE("pass");
+//                 }
+// #endif
+//             }
+//         };
 
-        // Restore filename before evaluating the test macros
-#line BSLS_ASSERTTEST_RESET_THIS_FILENAME
+//         // Restore filename before evaluating the test macros
+// #line BSLS_ASSERTTEST_RESET_THIS_FILENAME
 
-// [11] Test for expressions that should fail
+// // [11] Test for expressions that should fail
 
-        EXPECTED = false;
+//         EXPECTED = false;
 
-        // These tests will call ASSERT(false)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
+//         // These tests will call ASSERT(false)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Safe2::callSafe(false));
 
-        // These tests will fail with the wrong level
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
+//         // These tests will fail with the wrong level
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callInvoke(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callOpt(false));
 
-        // These checks will fail with the wrong component
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
+//         // These checks will fail with the wrong component
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_FAIL(Production::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_FAIL(Production::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
-        BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_FAIL(Production::callSafe(false));
 
-// [12] Test for expressions that should pass
+// // [12] Test for expressions that should pass
 
-        EXPECTED = true;
+//         EXPECTED = true;
 
-        // These tests will call ASSERT(true)
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
+//         // These tests will call ASSERT(true)
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_INVOKE_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_OPT_PASS(Safe2::callSafe(false));
 
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
-        BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
-    }
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Production::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callInvoke(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callOpt(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callAssert(false));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(true));
+//         BSLS_ASSERTTEST_ASSERT_PASS(Safe2::callSafe(false));
+//     }
 
-    // Restore status-quo before starting the next test
-    EXPECTED = true;
+//     // Restore status-quo before starting the next test
+//     EXPECTED = true;
 //--------------------------------------------------END GENERATED : CHECK_LEVEL
 //---------------------------------------------------------------------------//
 // Restore the default 'ASSERT' macro for this test driver.

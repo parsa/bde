@@ -2328,6 +2328,10 @@ int AssertViolation::lineNumber() const
 ..._LEVEL_ASSERT_OPT and ..._LEVEL_NONE
 #endif
 
+// opt experiment:
+#if !defined(BSLS_ASSERT_IS_ACTIVE)
+    #error "bsls_assert should be active"
+#endif
 #endif
 
 // ----------------------------------------------------------------------------
