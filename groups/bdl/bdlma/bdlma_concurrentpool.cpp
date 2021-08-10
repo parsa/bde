@@ -85,7 +85,7 @@ bsls::Types::size_type computeInternalBlockSize(
                                               bsls::Types::size_type blockSize)
     // Return the number of bytes that must be allocated to provide an aligned
     // block of memory of the specified 'blockSize' that can also be used to
-    // represent a 'object' 'LLink' (on the 'bdlma::ConcurrentPool' objects
+    // represent a 'object' 'LLink' (on the 'bdlma::ConcurrentPool_REAL' objects
     // free list).  Note that this value is the maximum of either the size of a
     // 'LLink' object or 'blockSize' rounded up to the alignment required for a
     // 'LLink' object (i.e., the maximum platform alignment).
@@ -133,11 +133,11 @@ void replenishImp(bsls::AtomicPointer<LLink>       *nextList,
 namespace bdlma {
 
                            // --------------------
-                           // class ConcurrentPool
+                           // class ConcurrentPool_REAL
                            // --------------------
 
 // PRIVATE MANIPULATORS
-void ConcurrentPool::replenish()
+void ConcurrentPool_REAL::replenish()
 {
     replenishImp(reinterpret_cast<bsls::AtomicPointer<LLink> *>(&d_freeList),
                  &d_blockList,
@@ -157,7 +157,7 @@ void ConcurrentPool::replenish()
 }
 
 // CREATORS
-ConcurrentPool::ConcurrentPool(bsls::Types::size_type  blockSize,
+ConcurrentPool_REAL::ConcurrentPool_REAL(bsls::Types::size_type  blockSize,
                                bslma::Allocator       *basicAllocator)
 : d_blockSize(blockSize)
 , d_chunkSize(k_INITIAL_CHUNK_SIZE)
@@ -171,7 +171,7 @@ ConcurrentPool::ConcurrentPool(bsls::Types::size_type  blockSize,
     d_internalBlockSize = computeInternalBlockSize(blockSize);
 }
 
-ConcurrentPool::ConcurrentPool(bsls::Types::size_type       blockSize,
+ConcurrentPool_REAL::ConcurrentPool_REAL(bsls::Types::size_type       blockSize,
                                bsls::BlockGrowth::Strategy  growthStrategy,
                                bslma::Allocator            *basicAllocator)
 : d_blockSize(blockSize)
@@ -187,7 +187,7 @@ ConcurrentPool::ConcurrentPool(bsls::Types::size_type       blockSize,
     d_internalBlockSize = computeInternalBlockSize(blockSize);
 }
 
-ConcurrentPool::ConcurrentPool(bsls::Types::size_type       blockSize,
+ConcurrentPool_REAL::ConcurrentPool_REAL(bsls::Types::size_type       blockSize,
                                bsls::BlockGrowth::Strategy  growthStrategy,
                                int                          maxBlocksPerChunk,
                                bslma::Allocator            *basicAllocator)
@@ -205,14 +205,14 @@ ConcurrentPool::ConcurrentPool(bsls::Types::size_type       blockSize,
     d_internalBlockSize = computeInternalBlockSize(blockSize);
 }
 
-ConcurrentPool::~ConcurrentPool()
+ConcurrentPool_REAL::~ConcurrentPool_REAL()
 {
     BSLS_ASSERT(static_cast<int>(sizeof(LLink)) <= d_internalBlockSize);
     BSLS_ASSERT(0 != d_chunkSize);
 }
 
 // MANIPULATORS
-void *ConcurrentPool::allocate()
+void *ConcurrentPool_REAL::allocate()
 {
     Link *p;
     for (;;) {
@@ -303,7 +303,7 @@ void *ConcurrentPool::allocate()
     return static_cast<void *>(const_cast<Link **>(&p->d_next_p));
 }
 
-void ConcurrentPool::deallocate(void *address)
+void ConcurrentPool_REAL::deallocate(void *address)
 {
     Link *p = static_cast<Link *>(static_cast<void *>(
                      static_cast<char *>(address) - offsetof(Link, d_next_p)));
@@ -343,7 +343,7 @@ void ConcurrentPool::deallocate(void *address)
     }
 }
 
-void ConcurrentPool::reserveCapacity(int numBlocks)
+void ConcurrentPool_REAL::reserveCapacity(int numBlocks)
 {
     BSLS_ASSERT(0 <= numBlocks);
 

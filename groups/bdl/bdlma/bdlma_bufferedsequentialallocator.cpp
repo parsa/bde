@@ -12,7 +12,7 @@ namespace bdlma {
                     // ---------------------------------
 
 // CREATORS
-BufferedSequentialAllocator::~BufferedSequentialAllocator()
+BufferedSequentialAllocator_REAL::~BufferedSequentialAllocator_REAL()
 {
     d_pool.release();
 }

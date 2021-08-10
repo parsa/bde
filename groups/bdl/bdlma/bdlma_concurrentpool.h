@@ -1,5 +1,15 @@
 // bdlma_concurrentpool.h                                             -*-C++-*-
 
+#include "cheap/experimental/bde-config.h"
+
+#ifndef BDE_USE_ORIGINAL_CONCURRENTPOOL
+#error "Missing definition."
+#endif
+
+#if !BDE_USE_ORIGINAL_CONCURRENTPOOL
+#include "cheap/experimental/shim_concurrentpool.hpp"
+#endif
+
 // ----------------------------------------------------------------------------
 //                                   NOTICE
 //
@@ -16,19 +26,19 @@ BSLS_IDENT("$Id: $")
 //@PURPOSE: Provide thread-safe allocation of memory blocks of uniform size.
 //
 //@CLASSES:
-//   bdlma::ConcurrentPool: thread-safe memory manager that allocates blocks
+//   bdlma::ConcurrentPool_REAL: thread-safe memory manager that allocates blocks
 //
 //@SEE_ALSO: bdema_pool
 //
 //@DESCRIPTION: This component implements a memory pool,
-// 'bdlma::ConcurrentPool', that allocates and manages memory blocks of some
-// uniform size specified at construction.  A 'bdlma::ConcurrentPool' object
+// 'bdlma::ConcurrentPool_REAL', that allocates and manages memory blocks of some
+// uniform size specified at construction.  A 'bdlma::ConcurrentPool_REAL' object
 // maintains an internal linked list of free memory blocks, and dispenses one
 // block for each 'allocate' method invocation.  When a memory block is
 // deallocated, it is returned to the free list for potential reuse.
 //
 // Whenever the linked list of free memory blocks is depleted, the
-// 'bdlma::ConcurrentPool' replenishes the list by first allocating a large,
+// 'bdlma::ConcurrentPool_REAL' replenishes the list by first allocating a large,
 // contiguous "chunk" of memory, then splitting the chunk into multiple memory
 // blocks.  A chunk and its constituent memory blocks can be depicted visually:
 //..
@@ -48,7 +58,7 @@ BSLS_IDENT("$Id: $")
 //
 ///Configuration at Construction
 ///-----------------------------
-// When creating a 'bdlma::ConcurrentPool', clients must specify the specific
+// When creating a 'bdlma::ConcurrentPool_REAL', clients must specify the specific
 // block size managed and dispensed by the pool.  Furthermore, clients can
 // optionally configure:
 //
@@ -80,20 +90,20 @@ BSLS_IDENT("$Id: $")
 // implementation-defined maximum, at which it is capped.  Finally, unless
 // otherwise specified, all memory comes from the allocator that was the
 // currently installed default allocator at the time the
-// 'bdlma::ConcurrentPool' was created.
+// 'bdlma::ConcurrentPool_REAL' was created.
 //
 ///Overloaded Global Operator 'new'
 ///--------------------------------
 // This component overloads the global 'operator new' to allow convenient
-// syntax for the construction of objects using a 'bdlma::ConcurrentPool'.  The
-// 'new' operator supplied in this component takes a 'bdlma::ConcurrentPool'
+// syntax for the construction of objects using a 'bdlma::ConcurrentPool_REAL'.  The
+// 'new' operator supplied in this component takes a 'bdlma::ConcurrentPool_REAL'
 // argument indicating the source of the memory.  Consider the following use of
 // standard placement 'new' syntax (supplied by 'bsl_new.h') along with a
-// 'bdlma::ConcurrentPool' to allocate an object of type 'T'.  Note that the
+// 'bdlma::ConcurrentPool_REAL' to allocate an object of type 'T'.  Note that the
 // size of 'T' must be the same or smaller than the 'blockSize' with which the
 // pool is constructed:
 //..
-//  void f(bdlma::ConcurrentPool *pool)
+//  void f(bdlma::ConcurrentPool_REAL *pool)
 //  {
 //      assert(pool->blockSize() >= sizeof(T));
 //
@@ -107,13 +117,13 @@ BSLS_IDENT("$Id: $")
 //
 // Supplying an overloaded global 'operator new':
 //..
-//  ::operator new(bsl::size_t size, bdlma::ConcurrentPool& pool);
+//  ::operator new(bsl::size_t size, bdlma::ConcurrentPool_REAL& pool);
 //..
 // allows for the following cleaner usage, which does not require the size
 // calculation and guarantees that 'pool->deallocate' *is* called in case of an
 // exception:
 //..
-//  void f(bdlma::ConcurrentPool *pool)
+//  void f(bdlma::ConcurrentPool_REAL *pool)
 //  {
 //      assert(pool->blockSize() >= sizeof(T));
 //
@@ -138,12 +148,12 @@ BSLS_IDENT("$Id: $")
 //
 ///Usage
 ///-----
-// A 'bdlma::ConcurrentPool' can be used by node-based containers (such as
+// A 'bdlma::ConcurrentPool_REAL' can be used by node-based containers (such as
 // lists, trees, and hash tables that hold multiple elements of uniform size)
 // for efficient memory allocation of new elements.  The following container
 // class, 'my_PooledArray', stores templatized values "out-of-place" as nodes
 // in a 'vector' of pointers.  Since the size of each node is fixed and known
-// *a priori*, the class uses a 'bdlma::ConcurrentPool' to allocate memory for
+// *a priori*, the class uses a 'bdlma::ConcurrentPool_REAL' to allocate memory for
 // the nodes to improve memory allocation efficiency:
 //..
 //  // my_poolarray.h
@@ -155,7 +165,7 @@ BSLS_IDENT("$Id: $")
 //
 //      // DATA
 //      bsl::vector<T *>      d_array_p;  // array of pooled elements
-//      bdlma::ConcurrentPool d_pool;     // memory manager for array elements
+//      bdlma::ConcurrentPool_REAL d_pool;     // memory manager for array elements
 //
 //    private:
 //      // Not implemented:
@@ -276,10 +286,10 @@ namespace BloombergLP {
 namespace bdlma {
 
                            // ====================
-                           // class ConcurrentPool
+                           // class ConcurrentPool_REAL
                            // ====================
 
-class ConcurrentPool {
+class ConcurrentPool_REAL {
     // This class implements a memory pool that allocates and manages memory
     // blocks of some uniform size specified at construction.  This memory pool
     // maintains an internal linked list of free memory blocks, and dispenses
@@ -340,17 +350,17 @@ class ConcurrentPool {
 
   private:
     // NOT IMPLEMENTED
-    ConcurrentPool(const ConcurrentPool&);
-    ConcurrentPool& operator=(const ConcurrentPool&);
+    ConcurrentPool_REAL(const ConcurrentPool_REAL&);
+    ConcurrentPool_REAL& operator=(const ConcurrentPool_REAL&);
 
   public:
     // CREATORS
-    explicit ConcurrentPool(bsls::Types::size_type  blockSize,
+    explicit ConcurrentPool_REAL(bsls::Types::size_type  blockSize,
                             bslma::Allocator       *basicAllocator = 0);
-    ConcurrentPool(bsls::Types::size_type       blockSize,
+    ConcurrentPool_REAL(bsls::Types::size_type       blockSize,
                    bsls::BlockGrowth::Strategy  growthStrategy,
                    bslma::Allocator            *basicAllocator = 0);
-    ConcurrentPool(bsls::Types::size_type       blockSize,
+    ConcurrentPool_REAL(bsls::Types::size_type       blockSize,
                    bsls::BlockGrowth::Strategy  growthStrategy,
                    int                          maxBlocksPerChunk,
                    bslma::Allocator            *basicAllocator = 0);
@@ -370,7 +380,7 @@ class ConcurrentPool {
         // used.  The behavior is undefined unless '1 <= blockSize' and
         // '1 <= maxBlocksPerChunk'.
 
-    ~ConcurrentPool();
+    ~ConcurrentPool_REAL();
         // Destroy this pool, releasing all associated memory back to the
         // underlying allocator.
 
@@ -457,7 +467,7 @@ class ConcurrentPool {
 // destroy the right number of objects).
 
 // FREE OPERATORS
-void *operator new(bsl::size_t size, BloombergLP::bdlma::ConcurrentPool& pool);
+void *operator new(bsl::size_t size, BloombergLP::bdlma::ConcurrentPool_REAL& pool);
     // Return a block of memory of the specified 'size' (in bytes) allocated
     // from the specified 'pool'.  The behavior is undefined unless 'size' is
     // the same or smaller than the 'blockSize' with which 'pool' was
@@ -466,7 +476,7 @@ void *operator new(bsl::size_t size, BloombergLP::bdlma::ConcurrentPool& pool);
     // internally, requiring the allocator to be passed in as a constructor
     // argument:
     //..
-    //  my_Type *newMyType(bdlma::ConcurrentPool *pool,
+    //  my_Type *newMyType(bdlma::ConcurrentPool_REAL *pool,
     //                     bslma::Allocator      *basicAllocator)
     //  {
     //      return new (*pool) my_Type(..., basicAllocator);
@@ -476,7 +486,7 @@ void *operator new(bsl::size_t size, BloombergLP::bdlma::ConcurrentPool& pool);
     // called directly.  Instead, this component provides a static template
     // member function, 'deleteObject', parameterized by 'TYPE':
     //..
-    //  void deleteMyType(my_Type *t, bdlma::ConcurrentPool *pool)
+    //  void deleteMyType(my_Type *t, bdlma::ConcurrentPool_REAL *pool)
     //  {
     //      pool->deleteObject(t);
     //  }
@@ -488,13 +498,13 @@ void *operator new(bsl::size_t size, BloombergLP::bdlma::ConcurrentPool& pool);
     //..
 
 inline
-void operator delete(void *address, BloombergLP::bdlma::ConcurrentPool& pool);
+void operator delete(void *address, BloombergLP::bdlma::ConcurrentPool_REAL& pool);
     // Use the specified 'pool' to deallocate the memory at the specified
     // 'address'.  The behavior is undefined unless 'address' was allocated
     // using 'pool' and has not already been deallocated.  This operator is
     // supplied solely to allow the compiler to arrange for it to be called in
     // case of an exception.  Client code should not call it; use
-    // 'bdlma::ConcurrentPool::deleteObject()' instead.
+    // 'bdlma::ConcurrentPool_REAL::deleteObject()' instead.
 
 // ============================================================================
 //                             INLINE DEFINITIONS
@@ -503,27 +513,39 @@ void operator delete(void *address, BloombergLP::bdlma::ConcurrentPool& pool);
 namespace BloombergLP {
 namespace bdlma {
 
+#if BDE_USE_ORIGINAL_CONCURRENTPOOL
+class ConcurrentPool : public ConcurrentPool_REAL {
+public:
+  using ConcurrentPool_REAL::ConcurrentPool_REAL;
+};
+#else
+class ConcurrentPool : public ShimConcurrentPool {
+public:
+  using ShimConcurrentPool::ShimConcurrentPool;
+};
+#endif
+  
                            // --------------------
-                           // class ConcurrentPool
+                           // class ConcurrentPool_REAL
                            // --------------------
 
 // MANIPULATORS
 template<class TYPE>
 inline
-void ConcurrentPool::deleteObject(const TYPE *object)
+void ConcurrentPool_REAL::deleteObject(const TYPE *object)
 {
     bslma::DeleterHelper::deleteObject(object, this);
 }
 
 template<class TYPE>
 inline
-void ConcurrentPool::deleteObjectRaw(const TYPE *object)
+void ConcurrentPool_REAL::deleteObjectRaw(const TYPE *object)
 {
     bslma::DeleterHelper::deleteObjectRaw(object, this);
 }
 
 inline
-void ConcurrentPool::release()
+void ConcurrentPool_REAL::release()
 {
     d_mutex.lock();
     d_freeList = (Link*)0;
@@ -533,7 +555,7 @@ void ConcurrentPool::release()
 
 // ACCESSORS
 inline
-bsls::Types::size_type ConcurrentPool::blockSize() const
+bsls::Types::size_type ConcurrentPool_REAL::blockSize() const
 {
     return d_blockSize;
 }
@@ -541,17 +563,25 @@ bsls::Types::size_type ConcurrentPool::blockSize() const
 // Aspects
 
 inline
-bslma::Allocator *ConcurrentPool::allocator() const
+bslma::Allocator *ConcurrentPool_REAL::allocator() const
 {
     return d_blockList.allocator();
 }
 
+  //#if BDE_USE_ORIGINAL_CONCURRENTPOOL
+  //#warning "USING ORIGINAL CONCURRENT POOL"
+  //  using ConcurrentPool = ConcurrentPool_REAL;
+  //#else
+  //  using ConcurrentPool = ShimConcurrentPool;
+  //#endif
+
 }  // close package namespace
 }  // close enterprise namespace
 
+
 // FREE OPERATORS
 inline
-void *operator new(bsl::size_t size, BloombergLP::bdlma::ConcurrentPool& pool)
+void *operator new(bsl::size_t size, BloombergLP::bdlma::ConcurrentPool_REAL& pool)
 {
 #if defined(BSLS_ASSERT_SAFE_IS_USED)
     // gcc-4.8.1 introduced a new warning for unused typedefs, so this typedef
@@ -569,10 +599,11 @@ void *operator new(bsl::size_t size, BloombergLP::bdlma::ConcurrentPool& pool)
 }
 
 inline
-void operator delete(void *address, BloombergLP::bdlma::ConcurrentPool& pool)
+void operator delete(void *address, BloombergLP::bdlma::ConcurrentPool_REAL& pool)
 {
     pool.deallocate(address);
 }
+
 
 #endif
 

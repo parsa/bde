@@ -1,5 +1,15 @@
 // bdlma_buffermanager.h                                              -*-C++-*-
 
+#include "cheap/experimental/bde-config.h"
+
+#ifndef BDE_USE_ORIGINAL_BUFFERMANAGER
+#error "Missing definition."
+#endif
+
+#if !BDE_USE_ORIGINAL_BUFFERMANAGER
+#include "cheap/experimental/shim_buffermanager.hpp"
+#endif
+
 // ----------------------------------------------------------------------------
 //                                   NOTICE
 //
@@ -9,6 +19,8 @@
 
 #ifndef INCLUDED_BDLMA_BUFFERMANAGER
 #define INCLUDED_BDLMA_BUFFERMANAGER
+
+#include <cstdio>
 
 #include <bsls_ident.h>
 BSLS_IDENT("$Id: $")
@@ -21,8 +33,8 @@ BSLS_IDENT("$Id: $")
 //@SEE_ALSO: bdlma_bufferimputil, bdlma_bufferedsequentialallocator
 //
 //@DESCRIPTION: This component provides a memory manager ("buffer manager"),
-// 'bdlma::BufferManager', that dispenses heterogeneous memory blocks (of
-// varying, user-specified sizes) from an external buffer.  A 'BufferManager'
+// 'bdlma::BufferManager_REAL', that dispenses heterogeneous memory blocks (of
+// varying, user-specified sizes) from an external buffer.  A 'BufferManager_REAL'
 // has a similar interface to a sequential pool in that the two methods
 // 'allocate' and 'release' are provided.
 //
@@ -42,7 +54,7 @@ BSLS_IDENT("$Id: $")
 // allocations.  Note that individually allocated memory blocks cannot be
 // separately deallocated.
 //
-// 'bdlma::BufferManager' is typically used for fast and efficient memory
+// 'bdlma::BufferManager_REAL' is typically used for fast and efficient memory
 // allocation, when the user knows in advance the maximum amount of memory
 // needed.
 //
@@ -52,7 +64,7 @@ BSLS_IDENT("$Id: $")
 // within an array of integers.  Furthermore, suppose that speed is a concern
 // and we need the fastest possible implementation.  A natural solution will be
 // to use a hash table.  To further optimize for speed, we can use a custom
-// memory manager, such as 'bdlma::BufferManager', to speed up memory
+// memory manager, such as 'bdlma::BufferManager_REAL', to speed up memory
 // allocations.
 //
 // First, let's define the structure of a node inside our custom hash table
@@ -91,7 +103,7 @@ BSLS_IDENT("$Id: $")
 //  class my_IntegerCountingHashTable {
 //      // This class represents a hash table that is used to keep track of the
 //      // number of occurrences of various integers.  Note that this is a
-//      // highly specialized class that uses a 'bdlma::BufferManager' with
+//      // highly specialized class that uses a 'bdlma::BufferManager_REAL' with
 //      // sufficient memory for memory allocations.
 //
 //      // DATA
@@ -99,7 +111,7 @@ BSLS_IDENT("$Id: $")
 //
 //      int                    d_size;       // size of the node array
 //
-//      bdlma::BufferManager  *d_buffer;     // buffer manager (held, not
+//      bdlma::BufferManager_REAL  *d_buffer;     // buffer manager (held, not
 //                                           // owned)
 //
 //    public:
@@ -109,7 +121,7 @@ BSLS_IDENT("$Id: $")
 //          // that has the specified 'tableLength' and 'numNodes'.
 //
 //      // CREATORS
-//      my_IntegerCountingHashTable(int size, bdlma::BufferManager *buffer);
+//      my_IntegerCountingHashTable(int size, bdlma::BufferManager_REAL *buffer);
 //          // Create a hash table of the specified 'size', using the specified
 //          // 'buffer' to supply memory.  The behavior is undefined unless
 //          // '0 < size', 'buffer' is non-zero, and 'buffer' has sufficient
@@ -129,7 +141,7 @@ BSLS_IDENT("$Id: $")
 //..
 // The implementation of the rest of 'my_IntegerCountingHashTable' is elided as
 // the class method 'calculateBufferSize', constructor, and the 'insert' method
-// alone are sufficient to illustrate the use of 'bdlma::BufferManager':
+// alone are sufficient to illustrate the use of 'bdlma::BufferManager_REAL':
 //..
 //  // CLASS METHODS
 //  int my_IntegerCountingHashTable::calculateBufferSize(int tableLength,
@@ -147,7 +159,7 @@ BSLS_IDENT("$Id: $")
 //  // CREATORS
 //  my_IntegerCountingHashTable::my_IntegerCountingHashTable(
 //                                                int                   size,
-//                                                bdlma::BufferManager *buffer)
+//                                                bdlma::BufferManager_REAL *buffer)
 //  : d_size(size)
 //  , d_buffer(buffer)
 //  {
@@ -188,7 +200,7 @@ BSLS_IDENT("$Id: $")
 //      return 1;
 //  }
 //..
-// Note that 'bdlma::BufferManager' is used to allocate memory blocks of
+// Note that 'bdlma::BufferManager_REAL' is used to allocate memory blocks of
 // heterogeneous sizes.  In the constructor, memory is allocated for the node
 // array.  In 'insert', memory is allocated for the nodes.
 //
@@ -204,7 +216,7 @@ BSLS_IDENT("$Id: $")
 //      const int MAX_SIZE = my_IntegerCountingHashTable::
 //                                         calculateBufferSize(length, length);
 //..
-// We then allocate an external buffer to be used by 'bdlma::BufferManager'.
+// We then allocate an external buffer to be used by 'bdlma::BufferManager_REAL'.
 // Normally, this buffer will be created on the program stack if we know the
 // length in advance (for example, if we specify in the contract of this
 // function that we only handle arrays having a length of up to 10,000
@@ -222,7 +234,7 @@ BSLS_IDENT("$Id: $")
 //..
 //      bslma::DeallocatorGuard<bslma::Allocator> guard(buffer, allocator);
 //
-//      bdlma::BufferManager bufferManager(buffer, MAX_SIZE);
+//      bdlma::BufferManager_REAL bufferManager(buffer, MAX_SIZE);
 //      my_IntegerCountingHashTable table(length, &bufferManager);
 //
 //      while (--length >= 0) {
@@ -255,10 +267,10 @@ namespace BloombergLP {
 namespace bdlma {
 
                            // ===================
-                           // class BufferManager
+                           // class BufferManager_REAL
                            // ===================
 
-class BufferManager {
+class BufferManager_REAL {
     // This class implements a buffer manager that dispenses heterogeneous
     // blocks of memory (of varying, user-specified sizes) from an external
     // buffer whose address and size are optionally supplied at construction.
@@ -286,13 +298,13 @@ class BufferManager {
 
   private:
     // NOT IMPLEMENTED
-    BufferManager(const BufferManager&);
-    BufferManager& operator=(const BufferManager&);
+    BufferManager_REAL(const BufferManager_REAL&);
+    BufferManager_REAL& operator=(const BufferManager_REAL&);
 
   public:
     // CREATORS
     explicit
-    BufferManager(
+    BufferManager_REAL(
            bsls::Alignment::Strategy strategy = bsls::Alignment::BSLS_NATURAL);
         // Create a buffer manager for allocating memory blocks.  Optionally
         // specify an alignment 'strategy' used to align allocated memory
@@ -301,7 +313,7 @@ class BufferManager {
         // memory until an external buffer is provided by calling the
         // 'replaceBuffer' method.
 
-    BufferManager(
+    BufferManager_REAL(
           char                      *buffer,
           bsls::Types::size_type     bufferSize,
           bsls::Alignment::Strategy  strategy = bsls::Alignment::BSLS_NATURAL);
@@ -312,7 +324,7 @@ class BufferManager {
         // alignment is used.  The behavior is undefined unless
         // '0 < bufferSize' and 'buffer' has at least 'bufferSize' bytes.
 
-    ~BufferManager();
+    ~BufferManager_REAL();
         // Destroy this buffer manager.
 
     // MANIPULATORS
@@ -335,7 +347,7 @@ class BufferManager {
     void deleteObjectRaw(const TYPE *object);
         // Destroy the specified 'object'.  Note that memory associated with
         // 'object' is not deallocated because there is no 'deallocate' method
-        // in 'BufferManager'.
+        // in 'BufferManager_REAL'.
 
     template <class TYPE>
     void deleteObject(const TYPE *object);
@@ -432,12 +444,12 @@ class BufferManager {
 // ============================================================================
 
                            // -------------------
-                           // class BufferManager
+                           // class BufferManager_REAL
                            // -------------------
 
 // CREATORS
 inline
-BufferManager::BufferManager(bsls::Alignment::Strategy strategy)
+BufferManager_REAL::BufferManager_REAL(bsls::Alignment::Strategy strategy)
 : d_buffer_p(0)
 , d_bufferSize(0)
 , d_cursor(0)
@@ -451,7 +463,7 @@ BufferManager::BufferManager(bsls::Alignment::Strategy strategy)
 }
 
 inline
-BufferManager::BufferManager(char                      *buffer,
+BufferManager_REAL::BufferManager_REAL(char                      *buffer,
                              bsls::Types::size_type     bufferSize,
                              bsls::Alignment::Strategy  strategy)
 : d_buffer_p(buffer)
@@ -469,7 +481,7 @@ BufferManager::BufferManager(char                      *buffer,
 }
 
 inline
-BufferManager::~BufferManager()
+BufferManager_REAL::~BufferManager_REAL()
 {
     BSLS_ASSERT(0 <= d_cursor);
     BSLS_ASSERT(static_cast<bsls::Types::size_type>(d_cursor) <= d_bufferSize);
@@ -479,7 +491,7 @@ BufferManager::~BufferManager()
 
 // MANIPULATORS
 inline
-void *BufferManager::allocate(bsls::Types::size_type size)
+void *BufferManager_REAL::allocate(bsls::Types::size_type size)
 {
     BSLS_ASSERT_SAFE(0 <= d_cursor);
     BSLS_ASSERT_SAFE(static_cast<bsls::Types::size_type>(d_cursor)
@@ -494,14 +506,17 @@ void *BufferManager::allocate(bsls::Types::size_type size)
                    static_cast<bsls::Types::size_type>(cursor) <= d_bufferSize)
         && BSLS_PERFORMANCEHINT_PREDICT_LIKELY(0 < size)) {
         d_cursor = cursor;
+	//	printf("BufferManager_REAL: allocating at %p\n", address + offset);
         return address + offset;                                      // RETURN
+    } else {
+      //      printf("BufferManager_REAL: slow path\n");
     }
 
     return 0;
 }
 
 inline
-void *BufferManager::allocateRaw(bsls::Types::size_type size)
+void *BufferManager_REAL::allocateRaw(bsls::Types::size_type size)
 {
     BSLS_ASSERT_SAFE(0 <  size);
     BSLS_ASSERT_SAFE(0 <= d_cursor);
@@ -519,7 +534,7 @@ void *BufferManager::allocateRaw(bsls::Types::size_type size)
 
 template <class TYPE>
 inline
-void BufferManager::deleteObjectRaw(const TYPE *object)
+void BufferManager_REAL::deleteObjectRaw(const TYPE *object)
 {
     if (0 != object) {
 #ifndef BSLS_PLATFORM_CMP_SUN
@@ -532,13 +547,13 @@ void BufferManager::deleteObjectRaw(const TYPE *object)
 
 template <class TYPE>
 inline
-void BufferManager::deleteObject(const TYPE *object)
+void BufferManager_REAL::deleteObject(const TYPE *object)
 {
     deleteObjectRaw(object);
 }
 
 inline
-char *BufferManager::replaceBuffer(char                   *newBuffer,
+char *BufferManager_REAL::replaceBuffer(char                   *newBuffer,
                                    bsls::Types::size_type  newBufferSize)
 {
     BSLS_ASSERT(newBuffer);
@@ -553,13 +568,13 @@ char *BufferManager::replaceBuffer(char                   *newBuffer,
 }
 
 inline
-void BufferManager::release()
+void BufferManager_REAL::release()
 {
     d_cursor = 0;
 }
 
 inline
-void BufferManager::reset()
+void BufferManager_REAL::reset()
 {
     d_buffer_p   = 0;
     d_bufferSize = 0;
@@ -568,7 +583,7 @@ void BufferManager::reset()
 
 // ACCESSORS
 inline
-bsls::Alignment::Strategy BufferManager::alignmentStrategy() const
+bsls::Alignment::Strategy BufferManager_REAL::alignmentStrategy() const
 {
     return 0 == d_alignmentAndMask ? bsls::Alignment::BSLS_MAXIMUM
                                    : 1 == d_alignmentOrMask
@@ -577,19 +592,19 @@ bsls::Alignment::Strategy BufferManager::alignmentStrategy() const
 }
 
 inline
-char *BufferManager::buffer() const
+char *BufferManager_REAL::buffer() const
 {
     return d_buffer_p;
 }
 
 inline
-bsls::Types::size_type BufferManager::bufferSize() const
+bsls::Types::size_type BufferManager_REAL::bufferSize() const
 {
     return d_bufferSize;
 }
 
 inline
-int BufferManager::calculateAlignmentOffsetFromSize(
+int BufferManager_REAL::calculateAlignmentOffsetFromSize(
                                             const void             *address,
                                             bsls::Types::size_type  size) const
 {
@@ -608,7 +623,7 @@ int BufferManager::calculateAlignmentOffsetFromSize(
 }
 
 inline
-bool BufferManager::hasSufficientCapacity(bsls::Types::size_type size) const
+bool BufferManager_REAL::hasSufficientCapacity(bsls::Types::size_type size) const
 {
     BSLS_ASSERT(0 < size);
     BSLS_ASSERT(d_buffer_p);
@@ -622,6 +637,12 @@ bool BufferManager::hasSufficientCapacity(bsls::Types::size_type size) const
 
     return d_cursor + offset + size <= d_bufferSize;
 }
+
+#if BDE_USE_ORIGINAL_BUFFERMANAGER
+typedef BufferManager_REAL BufferManager;
+#else
+typedef ShimBufferManager BufferManager;
+#endif
 
 }  // close package namespace
 }  // close enterprise namespace

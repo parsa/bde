@@ -18,11 +18,11 @@ namespace BloombergLP {
 namespace bdlma {
 
                            // -------------------
-                           // class BufferManager
+                           // class BufferManager_REAL
                            // -------------------
 
 // MANIPULATORS
-bsls::Types::size_type BufferManager::expand(void                   *address,
+bsls::Types::size_type BufferManager_REAL::expand(void                   *address,
                                              bsls::Types::size_type  size)
 {
     BSLS_ASSERT(address);
@@ -41,7 +41,7 @@ bsls::Types::size_type BufferManager::expand(void                   *address,
     return size;
 }
 
-bsls::Types::size_type BufferManager::truncate(
+bsls::Types::size_type BufferManager_REAL::truncate(
                                           void                   *address,
                                           bsls::Types::size_type  originalSize,
                                           bsls::Types::size_type  newSize)

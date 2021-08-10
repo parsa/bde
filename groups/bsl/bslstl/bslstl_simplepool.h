@@ -1,4 +1,15 @@
 // bslstl_simplepool.h                                                -*-C++-*-
+
+#include "cheap/experimental/bde-config.h"
+
+#ifndef BDE_USE_ORIGINAL_SIMPLEPOOL
+#error "Missing definition."
+#endif
+
+#if !BDE_USE_ORIGINAL_SIMPLEPOOL
+#include "cheap/experimental/shim_simplepool.hpp"
+#endif
+
 #ifndef INCLUDED_BSLSTL_SIMPLEPOOL
 #define INCLUDED_BSLSTL_SIMPLEPOOL
 
@@ -220,10 +231,10 @@ namespace bslstl {
                        // ======================
 
 template <class ALLOCATOR>
-struct SimplePool_Type {
-    // For use only by 'bslstl::SimplePool'.  This 'struct' provides a
+struct SimplePool_REAL_Type {
+    // For use only by 'bslstl::SimplePool_REAL'.  This 'struct' provides a
     // namespace for a set of types used to define the base-class of a
-    // 'SimplePool'.  The parameterized 'ALLOCATOR' is bound to
+    // 'SimplePool_REAL'.  The parameterized 'ALLOCATOR' is bound to
     // 'MaxAlignedType' to ensure the allocated memory is maximally aligned.
 
     typedef typename bsl::allocator_traits<ALLOCATOR>::template
@@ -237,11 +248,11 @@ struct SimplePool_Type {
 };
 
                        // ================
-                       // class SimplePool
+                       // class SimplePool_REAL
                        // ================
 
 template <class VALUE, class ALLOCATOR>
-class SimplePool : public SimplePool_Type<ALLOCATOR>::AllocatorType {
+class SimplePool_REAL : public SimplePool_REAL_Type<ALLOCATOR>::AllocatorType {
     // This class provides methods for creating and deleting nodes using the
     // appropriate allocator-traits of the parameterized 'ALLOCATOR'.
     // This type is intended to be used as a private base-class for a
@@ -251,7 +262,7 @@ class SimplePool : public SimplePool_Type<ALLOCATOR>::AllocatorType {
     // 'bslma::Allocator').
 
     // PRIVATE TYPES
-    typedef SimplePool_Type<ALLOCATOR> Types;
+    typedef SimplePool_REAL_Type<ALLOCATOR> Types;
 
     union Block {
         // This 'union' implements a link data structure with the size no
@@ -305,9 +316,9 @@ class SimplePool : public SimplePool_Type<ALLOCATOR>::AllocatorType {
 
   private:
     // NOT IMPLEMENTED
-    SimplePool& operator=(bslmf::MovableRef<SimplePool>);
-    SimplePool& operator=(const SimplePool&);
-    SimplePool(const SimplePool&);
+    SimplePool_REAL& operator=(bslmf::MovableRef<SimplePool_REAL>);
+    SimplePool_REAL& operator=(const SimplePool_REAL&);
+    SimplePool_REAL(const SimplePool_REAL&);
 
   private:
     // PRIVATE MANIPULATORS
@@ -323,14 +334,14 @@ class SimplePool : public SimplePool_Type<ALLOCATOR>::AllocatorType {
 
   public:
     // CREATORS
-    explicit SimplePool(const ALLOCATOR& allocator);
+    explicit SimplePool_REAL(const ALLOCATOR& allocator);
         // Create a memory pool that returns blocks of contiguous memory of the
         // size of the parameterized 'VALUE' using the specified 'allocator' to
         // supply memory.  The chunk size grows starting with at least
         // 'sizeof(VALUE)', doubling in size up to an implementation defined
         // maximum number of blocks per chunk.
 
-    SimplePool(bslmf::MovableRef<SimplePool> original);
+    SimplePool_REAL(bslmf::MovableRef<SimplePool_REAL> original);
         // Create a memory pool, adopting all outstanding memory allocations
         // associated with the specified 'original' pool, that returns blocks
         // of contiguous memory of the sizeof the paramterized 'VALUE' using
@@ -339,12 +350,12 @@ class SimplePool : public SimplePool_Type<ALLOCATOR>::AllocatorType {
         // implementation defined maximum number of blocks per chunk.  Note
         // that 'original' is left in a valid but unspecified state.
 
-    ~SimplePool();
+    ~SimplePool_REAL();
         // Destroy this pool, releasing all associated memory back to the
         // underlying allocator.
 
     // MANIPULATORS
-    void adopt(bslmf::MovableRef<SimplePool> pool);
+    void adopt(bslmf::MovableRef<SimplePool_REAL> pool);
         // Adopt all outstanding memory allocations associated with the
         // specfied memory 'pool'.  The behavior is undefined unless this pool
         // uses the same allocator as that associated with 'pool'.  The
@@ -376,19 +387,19 @@ class SimplePool : public SimplePool_Type<ALLOCATOR>::AllocatorType {
     void release();
         // Relinquish all memory currently allocated via this pool object.
 
-    void swap(SimplePool& other);
+    void swap(SimplePool_REAL& other);
         // Efficiently exchange the memory blocks of this object with those of
         // the specified 'other' object.  This method provides the no-throw
         // exception-safety guarantee.  The behavior is undefined unless
         // 'allocator() == other.allocator()'.
 
-    void quickSwapRetainAllocators(SimplePool& other);
+    void quickSwapRetainAllocators(SimplePool_REAL& other);
         // Efficiently exchange the memory blocks of this object with those of
         // the specified 'other' object.  This method provides the no-throw
         // exception-safety guarantee.  The behavior is undefined unless
         // 'allocator() == other.allocator()'.
 
-    void quickSwapExchangeAllocators(SimplePool& other);
+    void quickSwapExchangeAllocators(SimplePool_REAL& other);
         // Efficiently exchange the memory blocks and the allocator of this
         // object with those of the specified 'other' object.  This method
         // provides the no-throw exception-safety guarantee.
@@ -410,8 +421,8 @@ class SimplePool : public SimplePool_Type<ALLOCATOR>::AllocatorType {
 
 // PRIVATE MANIPULATORS
 template <class VALUE, class ALLOCATOR>
-typename SimplePool<VALUE, ALLOCATOR>::Block *
-SimplePool<VALUE, ALLOCATOR>::allocateChunk(size_type size)
+typename SimplePool_REAL<VALUE, ALLOCATOR>::Block *
+SimplePool_REAL<VALUE, ALLOCATOR>::allocateChunk(size_type size)
 {
     // Determine the number of bytes we want to allocate and compute the number
     // of 'MaxAlignedType' needed to contain those bytes.
@@ -435,7 +446,7 @@ SimplePool<VALUE, ALLOCATOR>::allocateChunk(size_type size)
 
 template <class VALUE, class ALLOCATOR>
 inline
-void SimplePool<VALUE, ALLOCATOR>::replenish()
+void SimplePool_REAL<VALUE, ALLOCATOR>::replenish()
 {
     reserve(d_blocksPerChunk);
 
@@ -449,7 +460,7 @@ void SimplePool<VALUE, ALLOCATOR>::replenish()
 // CREATORS
 template <class VALUE, class ALLOCATOR>
 inline
-SimplePool<VALUE, ALLOCATOR>::SimplePool(const ALLOCATOR& allocator)
+SimplePool_REAL<VALUE, ALLOCATOR>::SimplePool_REAL(const ALLOCATOR& allocator)
 : AllocatorType(allocator)
 , d_chunkList_p(0)
 , d_freeList_p(0)
@@ -459,14 +470,14 @@ SimplePool<VALUE, ALLOCATOR>::SimplePool(const ALLOCATOR& allocator)
 
 template <class VALUE, class ALLOCATOR>
 inline
-SimplePool<VALUE, ALLOCATOR>::SimplePool(
-                                        bslmf::MovableRef<SimplePool> original)
+SimplePool_REAL<VALUE, ALLOCATOR>::SimplePool_REAL(
+                                        bslmf::MovableRef<SimplePool_REAL> original)
 : AllocatorType(bslmf::MovableRefUtil::access(original).allocator())
 , d_chunkList_p(bslmf::MovableRefUtil::access(original).d_chunkList_p)
 , d_freeList_p(bslmf::MovableRefUtil::access(original).d_freeList_p)
 , d_blocksPerChunk(bslmf::MovableRefUtil::access(original).d_blocksPerChunk)
 {
-    SimplePool& lvalue = original;
+    SimplePool_REAL& lvalue = original;
     lvalue.d_chunkList_p = 0;
     lvalue.d_freeList_p = 0;
     lvalue.d_blocksPerChunk = 1;
@@ -474,7 +485,7 @@ SimplePool<VALUE, ALLOCATOR>::SimplePool(
 
 template <class VALUE, class ALLOCATOR>
 inline
-SimplePool<VALUE, ALLOCATOR>::~SimplePool()
+SimplePool_REAL<VALUE, ALLOCATOR>::~SimplePool_REAL()
 {
     release();
 }
@@ -483,14 +494,14 @@ SimplePool<VALUE, ALLOCATOR>::~SimplePool()
 template <class VALUE, class ALLOCATOR>
 inline
 void
-SimplePool<VALUE, ALLOCATOR>::adopt(bslmf::MovableRef<SimplePool> pool)
+SimplePool_REAL<VALUE, ALLOCATOR>::adopt(bslmf::MovableRef<SimplePool_REAL> pool)
 {
     BSLS_ASSERT_SAFE(0 == d_chunkList_p);
     BSLS_ASSERT_SAFE(0 == d_freeList_p);
     BSLS_ASSERT_SAFE(allocator()
                            == bslmf::MovableRefUtil::access(pool).allocator());
 
-    SimplePool& lvalue = pool;
+    SimplePool_REAL& lvalue = pool;
     d_chunkList_p = lvalue.d_chunkList_p;
     d_freeList_p = lvalue.d_freeList_p;
     d_blocksPerChunk = lvalue.d_blocksPerChunk;
@@ -502,15 +513,15 @@ SimplePool<VALUE, ALLOCATOR>::adopt(bslmf::MovableRef<SimplePool> pool)
 
 template <class VALUE, class ALLOCATOR>
 inline
-typename SimplePool<VALUE, ALLOCATOR>::AllocatorType&
-SimplePool<VALUE, ALLOCATOR>::allocator()
+typename SimplePool_REAL<VALUE, ALLOCATOR>::AllocatorType&
+SimplePool_REAL<VALUE, ALLOCATOR>::allocator()
 {
     return *this;
 }
 
 template <class VALUE, class ALLOCATOR>
 inline
-VALUE *SimplePool<VALUE, ALLOCATOR>::allocate()
+VALUE *SimplePool_REAL<VALUE, ALLOCATOR>::allocate()
 {
     if (!d_freeList_p) {
         replenish();
@@ -522,7 +533,7 @@ VALUE *SimplePool<VALUE, ALLOCATOR>::allocate()
 
 template <class VALUE, class ALLOCATOR>
 inline
-void SimplePool<VALUE, ALLOCATOR>::deallocate(void *address)
+void SimplePool_REAL<VALUE, ALLOCATOR>::deallocate(void *address)
 {
     BSLS_ASSERT_SAFE(address);
 
@@ -532,7 +543,7 @@ void SimplePool<VALUE, ALLOCATOR>::deallocate(void *address)
 
 template <class VALUE, class ALLOCATOR>
 inline
-void SimplePool<VALUE, ALLOCATOR>::swap(SimplePool<VALUE, ALLOCATOR>& other)
+void SimplePool_REAL<VALUE, ALLOCATOR>::swap(SimplePool_REAL<VALUE, ALLOCATOR>& other)
 {
     BSLS_ASSERT_SAFE(allocator() == other.allocator());
 
@@ -543,16 +554,16 @@ void SimplePool<VALUE, ALLOCATOR>::swap(SimplePool<VALUE, ALLOCATOR>& other)
 
 template <class VALUE, class ALLOCATOR>
 inline
-void SimplePool<VALUE, ALLOCATOR>::quickSwapRetainAllocators(
-                                           SimplePool<VALUE, ALLOCATOR>& other)
+void SimplePool_REAL<VALUE, ALLOCATOR>::quickSwapRetainAllocators(
+                                           SimplePool_REAL<VALUE, ALLOCATOR>& other)
 {
     swap(other);
 }
 
 template <class VALUE, class ALLOCATOR>
 inline
-void SimplePool<VALUE, ALLOCATOR>::quickSwapExchangeAllocators(
-                                           SimplePool<VALUE, ALLOCATOR>& other)
+void SimplePool_REAL<VALUE, ALLOCATOR>::quickSwapExchangeAllocators(
+                                           SimplePool_REAL<VALUE, ALLOCATOR>& other)
 {
     using std::swap;
     swap(this->allocator(), other.allocator());
@@ -562,7 +573,7 @@ void SimplePool<VALUE, ALLOCATOR>::quickSwapExchangeAllocators(
 }
 
 template <class VALUE, class ALLOCATOR>
-void SimplePool<VALUE, ALLOCATOR>::reserve(size_type numBlocks)
+void SimplePool_REAL<VALUE, ALLOCATOR>::reserve(size_type numBlocks)
 {
     BSLS_ASSERT(0 < numBlocks);
 
@@ -578,7 +589,7 @@ void SimplePool<VALUE, ALLOCATOR>::reserve(size_type numBlocks)
 }
 
 template <class VALUE, class ALLOCATOR>
-void SimplePool<VALUE, ALLOCATOR>::release()
+void SimplePool_REAL<VALUE, ALLOCATOR>::release()
 {
     // The values in 'd_chunkList_p' are allocated using
     // 'AllocatorTraits::allocate' for max-aligned type (see
@@ -608,18 +619,26 @@ void SimplePool<VALUE, ALLOCATOR>::release()
 // ACCESSORS
 template <class VALUE, class ALLOCATOR>
 inline
-const typename SimplePool<VALUE, ALLOCATOR>::AllocatorType&
-SimplePool<VALUE, ALLOCATOR>::allocator() const
+const typename SimplePool_REAL<VALUE, ALLOCATOR>::AllocatorType&
+SimplePool_REAL<VALUE, ALLOCATOR>::allocator() const
 {
     return *this;
 }
 
 template <class VALUE, class ALLOCATOR>
 inline
-bool SimplePool<VALUE, ALLOCATOR>::hasFreeBlocks() const
+bool SimplePool_REAL<VALUE, ALLOCATOR>::hasFreeBlocks() const
 {
     return d_freeList_p;
 }
+
+#if BDE_USE_ORIGINAL_SIMPLEPOOL
+template <typename... Args>
+using SimplePool = SimplePool_REAL<Args...>;
+#else
+template <typename... Args>
+using SimplePool = ShimSimplePool<Args...>;
+#endif
 
 }  // close package namespace
 }  // close enterprise namespace
