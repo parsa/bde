@@ -407,6 +407,8 @@ int testEndToEndArray(typename bsl::add_lvalue_reference<TP>::type arg,
         typedef const MyType&           T8;
         typedef MyType&                 T9;
         typedef MyType                 *T10;
+        typedef int                     T11[];
+        typedef int                     T12[3];
 
         typedef int                     EXP1;
         typedef int&                    EXP2;
@@ -418,6 +420,9 @@ int testEndToEndArray(typename bsl::add_lvalue_reference<TP>::type arg,
         typedef const MyType&           EXP8;
         typedef MyType&                 EXP9;
         typedef MyType                 *EXP10;
+        typedef int                    *EXP11;
+        typedef int                    *EXP12;
+
 
         ASSERT((bsl::is_same<bslmf::ForwardingType<T1>::Type, EXP1>::value));
         ASSERT((bsl::is_same<bslmf::ForwardingType<T2>::Type, EXP2>::value));
@@ -429,6 +434,16 @@ int testEndToEndArray(typename bsl::add_lvalue_reference<TP>::type arg,
         ASSERT((bsl::is_same<bslmf::ForwardingType<T8>::Type, EXP8>::value));
         ASSERT((bsl::is_same<bslmf::ForwardingType<T9>::Type, EXP9>::value));
         ASSERT((bsl::is_same<bslmf::ForwardingType<T10>::Type, EXP10>::value));
+#ifndef BSLS_PLATFORM_CMP_IBM
+        // Note that there is a bug in the XLC compiler dealing with the decay
+        // of arrays into pointers in template arguments.  This is a known
+        // issue which we've tried to address in the past (see
+        // 'bslmf_isconvertible.t.cpp') and been unable to provide a working
+        // solution that is compatible with existing code.
+
+        ASSERT((bsl::is_same<bslmf::ForwardingType<T11>::Type, EXP11>::value));
+        ASSERT((bsl::is_same<bslmf::ForwardingType<T12>::Type, EXP12>::value));
+#endif
     }
 //..
 //

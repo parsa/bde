@@ -15,6 +15,7 @@ BSLS_IDENT("$Id: $")
 // implementation of the C++ standard type (if one exists).  Finally, place the
 // included symbols from the 'std' namespace (if any) into the 'bsl' namespace.
 
+#include <bsls_libraryfeatures.h>
 #include <bsls_nativestd.h>
 
 #include <shared_mutex>
@@ -22,6 +23,9 @@ BSLS_IDENT("$Id: $")
 namespace bsl {
     using native_std::shared_timed_mutex;
     using native_std::shared_lock;
+#ifdef BSLS_LIBRARYFEATURES_HAS_CPP17_BASELINE_LIBRARY
+    using native_std::shared_mutex;
+#endif
 }  // close package namespace
 
 #endif  // INCLUDED_BSL_SHARED_MUTE

@@ -81,6 +81,7 @@ BSLS_IDENT("$Id$")
 #include <bsls_platform.h>
 #include <bsls_types.h>
 
+#include <bsl_optional.h>
 #include <bsl_string.h>
 
 namespace BloombergLP {
@@ -146,16 +147,22 @@ struct DecimalUtil {
         // the macro 'ERANGE' into 'errno' and return infinity with the
         // appropriate sign.
 
-    static int parseDecimal32( Decimal32  *out, const char *str);
-    static int parseDecimal64( Decimal64  *out, const char *str);
+    static int parseDecimal32(Decimal32 *out, const char *str);
+    static int parseDecimal64(Decimal64 *out, const char *str);
     static int parseDecimal128(Decimal128 *out, const char *str);
-    static int parseDecimal32( Decimal32  *out, const bsl::string& str);
-    static int parseDecimal64( Decimal64  *out, const bsl::string& str);
-    static int parseDecimal128(Decimal128 *out, const bsl::string& str);
+    template<class STRING_TYPE>
+    static int parseDecimal32(Decimal32 *out, const STRING_TYPE& str);
+    template <class STRING_TYPE>
+    static int parseDecimal64(Decimal64 *out, const STRING_TYPE& str);
+    template <class STRING_TYPE>
+    static int parseDecimal128(Decimal128 *out, const STRING_TYPE& str);
         // Load into the specified 'out' the decimal floating point number
         // described by the specified 'str'; return zero if the conversion was
         // successful and non-zero otherwise.  The value of 'out' is
-        // unspecified if the function returns a non-zero value.
+        // unspecified if the function returns a non-zero value.  The
+        // parameterized 'STRING_TYPE' must be one of 'bsl::string',
+        // 'std::string', 'std::pmr::string' (if supported), or
+        // 'bslstl::StringRef'.
 
                                   // math
 
@@ -698,10 +705,69 @@ struct DecimalUtil {
         // 'precision' attribute.
 };
 
+                       // =============================
+                       // class DecimalUtil_CStringUtil
+                       // =============================
+
+struct DecimalUtil_CStringUtil {
+    // This component-private utility 'struct' provides a namespace for the
+    // 'flatten' overload set intended to be used in concert with an overload
+    // set consisting of a function template with a deduced argument and an
+    // non-template overload accepting a 'const char *'.  The actual
+    // implementation of the functionality would be in the 'const char *'
+    // overload whereas the purpose of the function template is to invoke the
+    // 'const char *' overload with a null-terminated string.
+    //
+    // The function template achieves null-termination by recursively calling
+    // the function and supplying it with the result of 'flatten' invoked on
+    // the deduced argument.  This 'flatten' invocation will call 'c_str()' on
+    // various supported 'string' types, will produce a temporary 'bsl::string'
+    // for possibly non-null-terminated 'bslstl::StringRef', and will result in
+    // a 'BSLMF_ASSERT' for any unsupported type.  Calling the function with
+    // the temporary 'bsl::string' produced from 'bslstl::StringRef' will
+    // result in a second invocation of 'flatten', this time producing
+    // 'const char *', and finally calling the function with a null-terminated
+    // string.
+    //
+    // Note that the 'bslstl::StringRef' overload for 'flatten' is provided for
+    // backwards compatibility.  Without it, the 'bsl::string' and
+    // 'std::string' overloads would be ambiguous.  In new code, it is
+    // preferable to not provide 'bslstl::StringRef' overload in a similar
+    // facility and require the clients to explicitly state the string type in
+    // their code, making a potential allocation obvious.  The
+    // 'bsl::string_view' overload is not provided for the same reason.
+
+    // CLASS METHODS
+
+    static const char *flatten(const char *cString);
+        // Return the specified 'cString'.
+
+    static const char *flatten(const bsl::string& string);
+    static const char *flatten(const std::string& string);
+#ifdef BSLS_LIBRARYFEATURES_HAS_CPP17_PMR
+    static const char *flatten(const std::pmr::string& string);
+#endif
+        // Return the result of invoking 'c_str()' on the specified 'string'.
+
+    static bsl::string flatten(const bslstl::StringRef& stringRef);
+        // Return a temporary 'bsl::string' constructed from the specified
+        // 'stringRef'.
+
+    template <typename TYPE>
+    static const char *flatten(const TYPE&);
+        // Produce a compile-time error informing the caller that the
+        // parameterized 'TYPE' is not supported as the parameter for the call.
+};
+
 // ============================================================================
 //                      INLINE FUNCTION DEFINITIONS
 // ============================================================================
 
+                             // -----------------
+                             // class DecimalUtil
+                             // -----------------
+
+// CLASS METHODS
 inline
 Decimal32 DecimalUtil::makeDecimalRaw32(int significand, int exponent)
 {
@@ -772,6 +838,31 @@ Decimal64 DecimalUtil::makeDecimal64(unsigned long long significand,
 {
     return DecimalImpUtil::makeDecimal64(significand, exponent);
 }
+
+template <class STRING_TYPE>
+inline
+int DecimalUtil::parseDecimal32(Decimal32 *out, const STRING_TYPE& str)
+{
+    return DecimalUtil::parseDecimal32(out,
+                                       DecimalUtil_CStringUtil::flatten(str));
+}
+
+template <class STRING_TYPE>
+inline
+int DecimalUtil::parseDecimal64(Decimal64 *out, const STRING_TYPE& str)
+{
+    return DecimalUtil::parseDecimal64(out,
+                                       DecimalUtil_CStringUtil::flatten(str));
+}
+
+template <class STRING_TYPE>
+inline
+int DecimalUtil::parseDecimal128(Decimal128 *out, const STRING_TYPE& str)
+{
+    return DecimalUtil::parseDecimal128(out,
+                                        DecimalUtil_CStringUtil::flatten(str));
+}
+
 
                              // Quantum functions
 
@@ -1256,6 +1347,52 @@ inline
 Decimal128 DecimalUtil::sqrt(Decimal128 x)
 {
     return bdldfp::DecimalImpUtil::sqrt(*x.data());
+}
+
+                       // -----------------------------
+                       // class DecimalUtil_CStringUtil
+                       // -----------------------------
+
+// CLASS METHODS
+inline
+const char *DecimalUtil_CStringUtil::flatten(const char *cString)
+{
+    return cString;
+}
+
+inline
+const char *DecimalUtil_CStringUtil::flatten(const bsl::string& string)
+{
+    return string.c_str();
+}
+
+inline
+const char *DecimalUtil_CStringUtil::flatten(const std::string& string)
+{
+    return string.c_str();
+}
+
+#ifdef BSLS_LIBRARYFEATURES_HAS_CPP17_PMR
+inline
+const char *DecimalUtil_CStringUtil::flatten(const std::pmr::string& string)
+{
+    return string.c_str();
+}
+#endif
+
+inline
+bsl::string DecimalUtil_CStringUtil::flatten(
+                                            const bslstl::StringRef& stringRef)
+{
+    return stringRef;
+}
+
+template <typename TYPE>
+inline
+const char *DecimalUtil_CStringUtil::flatten(const TYPE&)
+{
+    BSLMF_ASSERT(("Unsupported parameter type." && !sizeof(TYPE)));
+    return 0;
 }
 
 }  // close package namespace

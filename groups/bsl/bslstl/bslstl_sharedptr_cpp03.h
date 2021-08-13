@@ -21,7 +21,7 @@
 // specially delimited regions of C++11 code, then this header contains no
 // code and is not '#include'd in the original header.
 //
-// Generated on Fri Oct 23 15:03:36 2020
+// Generated on Tue Jun 15 16:05:34 2021
 // Command line: sim_cpp11_features.pl bslstl_sharedptr.h
 
 #ifdef COMPILING_BSLSTL_SHAREDPTR_H
@@ -609,7 +609,7 @@ class shared_ptr {
         // and deallocate the internal representation of the shared pointer.
         // If 'basicAllocator' is 0, the currently installed default allocator
         // is used.  This function does not exist unless
-        // 'unqiue_ptr<COMPATIBLE_TYPE, DELETER>::pointer' is convertible to
+        // 'unique_ptr<COMPATIBLE_TYPE, DELETER>::pointer' is convertible to
         // 'ELEMENT_TYPE *'.  Note that this function creates a 'shared_ptr'
         // with an unspecified deleter type that has satisfies this contract,
         // which might not be the deleter of 'rhs', which is specified by the
@@ -635,7 +635,7 @@ class shared_ptr {
         // and deallocate the internal representation of the shared pointer.
         // If 'basicAllocator' is 0, the currently installed default allocator
         // is used.  This function does not exist unless
-        // 'unqiue_ptr<COMPATIBLE_TYPE, DELETER>::pointer' is convertible to
+        // 'unique_ptr<COMPATIBLE_TYPE, DELETER>::pointer' is convertible to
         // 'ELEMENT_TYPE *'.  Note that this function creates a 'shared_ptr'
         // with an unspecified deleter type that has satisfies this contract,
         // which might not be the deleter of 'rhs', which is specified by the
@@ -869,11 +869,14 @@ class shared_ptr {
         // parameter) type 'COMPATIBLE_TYPE', and make this shared pointer
         // refer to '(ELEMENT_TYPE *)rhs.ptr()'.  The deleter used in the 'rhs'
         // will be used to destroy the shared object when all references have
-        // been released.  If this shared pointer is already managing a
-        // (possibly shared) object, then release the reference to that shared
-        // object, and destroy it using its associated deleter if this shared
-        // pointer held the last shared reference to that object.  Note that if
-        // 'rhs' is empty, then this shared pointer will be empty after the
+        // been released.  The *default* *allocator* is used to allocate a
+        // 'SharedPtrRep', if needed (users must use the copy-constructor and
+        // swap instead of using this operator to supply an alternative
+        // allocator).  If this shared pointer is already managing a (possibly
+        // shared) object, then release the reference to that shared object,
+        // and destroy it using its associated deleter if this shared pointer
+        // held the last shared reference to that object.  Note that if 'rhs'
+        // is empty, then this shared pointer will be empty after the
         // assignment.  Also note that if 'rhs' owns a reference to another
         // shared object (due to a previous call to
         // 'shared_ptr<T>::managedPtr') then this 'shared_ptr' will adopt the
@@ -916,7 +919,7 @@ class shared_ptr {
         // object, then release the reference to that shared object, and
         // destroy it using its associated deleter if this shared pointer held
         // the last shared reference to that object.  This function does not
-        // exist unless 'unqiue_ptr<COMPATIBLE_TYPE, DELETER>::pointer' is
+        // exist unless 'unique_ptr<COMPATIBLE_TYPE, DELETER>::pointer' is
         // convertible to 'ELEMENT_TYPE *'.  Note that if 'rhs' is empty, then
         // this shared pointer will be empty after the assignment.  Also note
         // that this function creates a 'shared_ptr' with an unspecified
@@ -7970,7 +7973,7 @@ struct IsBitwiseMoveable< ::bsl::weak_ptr<ELEMENT_TYPE> >
 #endif // ! defined(INCLUDED_BSLSTL_SHAREDPTR_CPP03)
 
 // ----------------------------------------------------------------------------
-// Copyright 2020 Bloomberg Finance L.P.
+// Copyright 2021 Bloomberg Finance L.P.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.

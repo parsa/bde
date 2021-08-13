@@ -11,11 +11,17 @@
 
 #include <balxml_errorinfo.h>
 
+#include <bdls_filesystemutil.h>
+#include <bdls_osutil.h>
+#include <bdls_processutil.h>
+#include <bdlsb_fixedmeminstreambuf.h>
+#include <bdlsb_fixedmemoutstreambuf.h>
+
 #include <bslim_testutil.h>
 
+#include <bsla_fallthrough.h>
 #include <bslma_testallocator.h>
 #include <bslma_testallocatorexception.h>
-
 #include <bsls_types.h>
 
 #include <bsl_cstring.h>     // strlen()
@@ -27,7 +33,10 @@
 #include <bsl_string.h>
 
 using namespace BloombergLP;
-using namespace bsl;
+using bsl::cout;
+using bsl::cerr;
+using bsl::endl;
+using bsl::flush;
 
 //=============================================================================
 //                                 TEST PLAN
@@ -75,31 +84,35 @@ using namespace bsl;
 //
 // [14] advanceToEndNodeRawBare()
 //
-// [15] MiniReader(basicAllocator)
-// [15] MiniReader(bufSize, basicAllocator)
-// [15] ~MiniReader()
-// [15] setPrefixStack(balxml::PrefixStack *prefixes)
-// [15] prefixStack()
-// [15] open()
-// [15] isOpen()
-// [15] documentEncoding()
-// [15] nodeType()
-// [15] nodeName()
-// [15] nodeHasValue()
-// [15] nodeValue()
-// [15] nodeDepth()
-// [15] numAttributes()
-// [15] isEmptyElement()
-// [15] advanceToNextNode()
-// [15] lookupAttribute(ElemAtt a, int index)
-// [15] lookupAttribute(ElemAtt a, char *qname)
-// [15] lookupAttribute(ElemAtt a, char *localname, char *nsUri)
-// [15] lookupAttribute(ElemAtt a, char *localname, int nsId)
+// [16] MiniReader(basicAllocator)
+// [16] MiniReader(bufSize, basicAllocator)
+// [16] ~MiniReader()
+// [16] setPrefixStack(balxml::PrefixStack *prefixes)
+// [16] prefixStack()
+// [16] open()
+// [16] isOpen()
+// [16] documentEncoding()
+// [16] nodeType()
+// [16] nodeName()
+// [16] nodeHasValue()
+// [16] nodeValue()
+// [16] nodeDepth()
+// [16] numAttributes()
+// [16] isEmptyElement()
+// [16] advanceToNextNode()
+// [16] lookupAttribute(ElemAtt a, int index)
+// [16] lookupAttribute(ElemAtt a, char *qname)
+// [16] lookupAttribute(ElemAtt a, char *localname, char *nsUri)
+// [16] lookupAttribute(ElemAtt a, char *localname, int nsId)
+// [15] getCurrentPosition();
+// [15] ErrorInfo::lineNumber();
+// [15] ErrorInfo::columnNumber();
 //-----------------------------------------------------------------------------
 // [-1] INTERACTIVE TEST
 // [ 1] BREATHING TEST
-// [15] FUZZ TEST
-// [16] USAGE EXAMPLE
+// [15] UNEXPECTED EOF TEST
+// [16] FUZZ TEST
+// [17] USAGE EXAMPLE
 //-----------------------------------------------------------------------------
 
 // ============================================================================
@@ -158,6 +171,7 @@ static int veryVeryVerbose = 0;
 typedef balxml::MiniReader        Obj;
 typedef balxml::ElementAttribute  ElementAttribute;
 typedef balxml::NamespaceRegistry Registry;
+typedef bsls::Types::IntPtr       IntPtr;
 
 const bsl::string::size_type npos = bsl::string::npos;
 
@@ -797,6 +811,92 @@ void advanceN(Obj& reader, bsl::size_t n)
     }
 }
 
+
+                                // =============
+                                // class RandGen
+                                // =============
+
+class RandGen {
+    // Random number generator using the high-order 32 bits of Donald Knuth's
+    // MMIX algorithm.
+
+    bsls::Types::Uint64 d_seed;
+
+  public:
+    explicit
+    RandGen(int startSeed = 0);
+        // Initialize the generator with the specified 'startSeed'.
+
+    unsigned operator()();
+        // Return the next random number in the series;
+};
+
+// CREATOR
+inline
+RandGen::RandGen(int startSeed)
+: d_seed(startSeed)
+{
+    (void) (*this)();
+    (void) (*this)();
+    (void) (*this)();
+}
+
+// MANIPULATOR
+inline
+unsigned RandGen::operator()()
+{
+    d_seed = d_seed * 6364136223846793005ULL + 1442695040888963407ULL;
+    return static_cast<unsigned>(d_seed >> 32);
+}
+
+enum Mode { e_STRING, e_FILE, e_STREAMBUF, e_END };
+
+bsl::ostream& operator<<(bsl::ostream& stream, Mode mode)
+{
+#undef  CASE
+#define CASE(value)    case value: { stream << #value; } break
+
+    switch (mode) {
+      CASE(e_STRING);
+      CASE(e_FILE);
+      CASE(e_STREAMBUF);
+      CASE(e_END);
+      default: {
+        stream << "Unknown mode: " << static_cast<int>(mode);
+      } break;
+    }
+#undef  CASE
+
+    return stream;
+}
+
+int findLoc(int                *line,
+            int                *column,
+            const bsl::string&  pattern,
+            bsl::size_t         offset)
+{
+    if (pattern.length() < offset) {
+        return -1;                                                    // RETURN
+    }
+
+    *line = 1;
+    *column = 1;
+
+    for (unsigned pos = 0; pos < offset; ++pos) {
+        const char c = pattern[pos];
+
+        if ('\n' == c) {
+            ++*line;
+            *column = 1;
+        }
+        else {
+            ++*column;
+        }
+    }
+
+    return 0;
+}
+
 // ============================================================================
 //                               MAIN PROGRAM
 // ----------------------------------------------------------------------------
@@ -813,7 +913,7 @@ int main(int argc, char *argv[])
     bsl::cout << "TEST " << __FILE__ << " CASE " << test << bsl::endl;;
 
     switch (test) { case 0:  // Zero is always the leading case.
-      case 16: {
+      case 17: {
         // --------------------------------------------------------------------
         // USAGE EXAMPLE
         //
@@ -857,7 +957,7 @@ int main(int argc, char *argv[])
 
       } break;
 
-      case 15: {
+      case 16: {
         // --------------------------------------------------------------------
         // FUZZ TEST
         //
@@ -891,6 +991,150 @@ int main(int argc, char *argv[])
 
         rc = parseAndProcess(&reader);
         ASSERT(0 != rc);
+      } break;
+
+      case 15: {
+        // --------------------------------------------------------------------
+        // UNEXPECTED EOF TEST
+        //
+        // Concern:
+        //: 1 If the reader encounters an unexpected EOF, the position, line#,
+        //:   and column# are correct.
+        //
+        // Plan:
+        //: 1 Start out with a sequence of value xml, and traverse it with
+        //:   'advanceToNextNode', and observe that when 'advanceToNextNode'
+        //:   does not return 0, the position, line#, and column# correctly
+        //:   identify the position of the end of data.
+        //:
+        //: 2 Repeat the test for input from a string, file, and 'steambuf'.
+        //
+        // Testing:
+        //   getCurrentPosition();
+        //   ErrorInfo::lineNumber();
+        //   ErrorInfo::columnNumber();
+        // --------------------------------------------------------------------
+
+        if (verbose) cout << "UNEXPECTED EOF TEST\n"
+                             "===================\n";
+
+        enum { k_BUF_LEN = 1024 };
+        char fileName[k_BUF_LEN];
+        {
+            bsl::string osName, osVersion, osPatch;
+            const char *hostName = bsl::getenv("HOSTNAME");
+            if (!hostName) {
+                ASSERT(0 == bdls::OsUtil::getOsInfo(&osName,
+                                                    &osVersion,
+                                                    &osPatch));
+                osName += '.' + osVersion + '.' + osPatch;
+                hostName = osName.c_str();
+            }
+
+            bdlsb::FixedMemOutStreamBuf fileSb(fileName, sizeof(fileName));
+            bsl::ostream                fileStream(&fileSb);
+            fileStream << "tmp.balxml_minireader.15." << hostName << '.' <<
+                      bdls::ProcessUtil::getProcessId() << ".xml" << bsl::ends;
+
+            BSLS_ASSERT(bsl::strlen(fileName) < sizeof(fileName));
+        }
+
+        if (verbose) P(fileName);
+
+#define abcd " a='/Element1' b='/Element2' c='/Element3' d='/Node0' "
+        const bsl::string xmlRaw =
+          "<?xml version='1.0' encoding='UTF-8'?>\n"
+          "<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'\n"
+          "    elementFormDefault='qualified'\n"
+          "    xmlns:bdem='http://bloomberg.com/schemas/bdem'\n"
+          "    bdem:package='bascfg'>\n"
+          "<Node0" abcd ">\n"
+          "    <Element1" abcd ">element1</Element1>\n"
+          "    <Element2" abcd ">element2</Element2>\n"
+          "    <Element3" abcd ">element3</Element3>\n"
+          "</Node0>\n"
+          "</xs:schema>";
+#undef abcd
+
+        int colPass = 0, colFail = 0;
+        RandGen rand;
+
+        for (int mi = e_STRING; mi < e_END; ++mi) {
+            const Mode mode = static_cast<Mode>(mi);
+
+            for (int badPos = 0; badPos < (int) xmlRaw.length(); ++badPos) {
+                bsl::string xmlStr = xmlRaw;
+
+                xmlStr.resize(badPos);
+
+                Obj  reader;
+
+                balxml::NamespaceRegistry namespaces;
+                balxml::PrefixStack prefixStack(&namespaces);
+                reader.setPrefixStack(&prefixStack);
+
+                bdls::FilesystemUtil::remove(fileName);
+
+                bdlsb::FixedMemInStreamBuf sb("", 0);
+
+                int rc = 0;
+                switch (mode) {
+                  case e_STRING: {
+                    rc = reader.open(xmlStr.c_str(), xmlStr.length());
+                  } break;
+                  case e_FILE: {
+                    bsl::ofstream of(fileName);
+                    of << xmlStr;
+                    of.close();
+
+                    rc = reader.open(fileName);
+                  } break;
+                  case e_STREAMBUF: {
+                    sb.pubsetbuf(&xmlStr[0], xmlStr.length());
+
+                    rc = reader.open(&sb);
+                  } break;
+                  case e_END: BSLA_FALLTHROUGH;
+                  default: {
+                    BSLS_ASSERT(0 && "impossible mode");
+                  }
+                }
+
+                // Note that 'MiniReader::open' calls 'MiniReader::readInput'
+                // so 'open' will fail if '0 == badPos'.
+
+                ASSERTV(mode, rc, badPos, 0 == rc || 0 == badPos);
+                if (0 != rc) {
+                    continue;
+                }
+
+                while (0 == (rc = reader.advanceToNextNode())) {
+                    ;    // do nothing
+                }
+
+                ASSERTV(badPos, badPos == reader.getCurrentPosition());
+
+                int expLine, expCol;
+                ASSERT(0 == findLoc(&expLine,
+                                    &expCol,
+                                    xmlStr,
+                                    badPos));
+                const balxml::ErrorInfo& errorInfo = reader.errorInfo();
+
+                ASSERTV(errorInfo.lineNumber(), expLine,
+                                            errorInfo.lineNumber() == expLine);
+                if (errorInfo.columnNumber() == expCol) {
+                    ++colPass;
+                }
+                else {
+                    ++colFail;
+                    ASSERTV(errorInfo.columnNumber(), expCol, badPos, colPass,
+                            colFail, mode, errorInfo.columnNumber() == expCol);
+                }
+            }
+        }
+
+        bdls::FilesystemUtil::remove(fileName);
       } break;
 
       case 14: {
@@ -947,6 +1191,7 @@ int main(int argc, char *argv[])
           "</Node0>\n"
           "</xs:schema>";
 #undef abcd
+        enum { k_xmlStrLen = sizeof(xmlStr) - 1 };
 
         if (veryVerbose) P(xmlStr);
 
@@ -960,7 +1205,7 @@ int main(int argc, char *argv[])
                                       "\n- - - - - - - - - - - - - - - -"
                                    << bsl::endl;
         {
-            int rc = reader.open(xmlStr, bsl::strlen(xmlStr));
+            int rc = reader.open(xmlStr, k_xmlStrLen);
             ASSERT(-1 < rc);
 
             ASSERT( reader.isOpen());
@@ -986,13 +1231,15 @@ int main(int argc, char *argv[])
             ASSERT(!bsl::strcmp(reader.nodeName(), "xs:schema"));
 
             reader.close();
+            ASSERTV(k_xmlStrLen, reader.getCurrentPosition(),
+                                   k_xmlStrLen == reader.getCurrentPosition());
         }
 
         if (veryVerbose) bsl::cout << "\nSkip Element1."
                                       "\n - - - - - - -"
                                    << bsl::endl;
         {
-            int rc = reader.open(xmlStr, bsl::strlen(xmlStr));
+            int rc = reader.open(xmlStr, k_xmlStrLen);
             ASSERT(-1 < rc);
 
             ASSERT( reader.isOpen());
@@ -1012,13 +1259,15 @@ int main(int argc, char *argv[])
             ASSERT(!bsl::strcmp(reader.nodeName(), "xs:schema"));
 
             reader.close();
+            ASSERTV(k_xmlStrLen, reader.getCurrentPosition(),
+                                   k_xmlStrLen == reader.getCurrentPosition());
         }
 
         if (veryVerbose) bsl::cout << "\nSkip inner element, Node0."
                                       "\n- - - - - - - - - - - - - "
                                    << bsl::endl;
         {
-            int rc = reader.open(xmlStr, bsl::strlen(xmlStr));
+            int rc = reader.open(xmlStr, k_xmlStrLen);
             ASSERT(-1 < rc);
 
             ASSERT( reader.isOpen());
@@ -1038,13 +1287,15 @@ int main(int argc, char *argv[])
             ASSERT(!bsl::strcmp(reader.nodeName(), "xs:schema"));
 
             reader.close();
+            ASSERTV(k_xmlStrLen, reader.getCurrentPosition(),
+                                   k_xmlStrLen == reader.getCurrentPosition());
         }
 
         if (veryVerbose) bsl::cout << "\nSkip outer element, xs:schema."
                                       "\n- - - - - - - - - - - - - - - "
                                    << bsl::endl;
         {
-            int rc = reader.open(xmlStr, bsl::strlen(xmlStr));
+            int rc = reader.open(xmlStr, k_xmlStrLen);
             ASSERT(-1 < rc);
 
             ASSERT( reader.isOpen());
@@ -1059,6 +1310,8 @@ int main(int argc, char *argv[])
             ASSERT(!bsl::strcmp(reader.nodeName(), "xs:schema"));
 
             reader.close();
+            ASSERTV(k_xmlStrLen, reader.getCurrentPosition(),
+                                   k_xmlStrLen == reader.getCurrentPosition());
         }
 
         if (veryVerbose) bsl::cout << "\nTests in ST_EOF and ST_CLOSED state."
@@ -1073,8 +1326,9 @@ int main(int argc, char *argv[])
               "    bdem:package='bascfg'>\n"
               "    <Node0>text</Node0>\n"
               "</xs:schema>";
+            enum { k_xmlStrLen = sizeof(xmlStr) - 1 };
 
-            int rc = reader.open(xmlStr, bsl::strlen(xmlStr));
+            int rc = reader.open(xmlStr, k_xmlStrLen);
             ASSERT(-1 < rc);
             ASSERT(reader.isOpen());
             ASSERT(reader.nodeType() == balxml::Reader::e_NODE_TYPE_NONE);
@@ -1111,8 +1365,9 @@ int main(int argc, char *argv[])
               "    bdem:package='bascfg'>\n"
               "    <Node0></Node1>\n"
               "</xs:schema>";
+            enum { k_xmlStrLen = sizeof(xmlStr) - 1 };
 
-            int rc = reader.open(xmlStr, bsl::strlen(xmlStr));
+            int rc = reader.open(xmlStr, k_xmlStrLen);
             ASSERT(-1 < rc);
             ASSERT(reader.isOpen());
             ASSERT(reader.nodeType() == balxml::Reader::e_NODE_TYPE_NONE);
@@ -1141,8 +1396,9 @@ int main(int argc, char *argv[])
               "    bdem:package='bascfg'>\n"
               "    <Node0/>\n"
               "</xs:schema>";
+            enum { k_xmlStrLen = sizeof(xmlStr) - 1 };
 
-            int rc = reader.open(xmlStr, bsl::strlen(xmlStr));
+            int rc = reader.open(xmlStr, k_xmlStrLen);
             ASSERT(-1 < rc);
             ASSERT(reader.isOpen());
             ASSERT(reader.nodeType() == balxml::Reader::e_NODE_TYPE_NONE);
@@ -1170,15 +1426,16 @@ int main(int argc, char *argv[])
               "<Node0>\n"
               "    <Element1>";
 
-            xmlStr += bsl::string(8 * 1024, 'b');
+            xmlStr += bsl::string(12 * 1024, 'b');
 
             xmlStr += "</Element1>\n"
               "    <Element2>element2</Element2>\n"
               "    <Element3>element3</Element3>\n"
               "</Node0>\n"
               "</xs:schema>";
+            const IntPtr xmlSize = xmlStr.size();
 
-            int rc = reader.open(xmlStr.data(), xmlStr.size());
+            int rc = reader.open(xmlStr.data(), xmlSize);
             ASSERT(-1 < rc);
             ASSERT(reader.isOpen());
             ASSERT(reader.nodeType() == balxml::Reader::e_NODE_TYPE_NONE);
@@ -1194,6 +1451,8 @@ int main(int argc, char *argv[])
             ASSERT(!bsl::strcmp(reader.nodeName(), "xs:schema"));
 
             reader.close();
+            ASSERTV(xmlSize, reader.getCurrentPosition(),
+                                       xmlSize == reader.getCurrentPosition());
         }
 
 
@@ -1285,7 +1544,7 @@ int main(int argc, char *argv[])
               "    </Node0>\n"
               "</xs:schema>";
 
-            int rc = reader.open(xmlStr, bsl::strlen(xmlStr));
+            int rc = reader.open(xmlStr, k_xmlStrLen);
             ASSERT(-1 < rc);
             ASSERT(reader.isOpen());
             ASSERT(reader.nodeType() == balxml::Reader::e_NODE_TYPE_NONE);
@@ -1327,7 +1586,7 @@ int main(int argc, char *argv[])
               "    </Node0>\n"
               "</xs:schema>";
 
-            int rc = reader.open(xmlStr, bsl::strlen(xmlStr));
+            int rc = reader.open(xmlStr, k_xmlStrLen);
             ASSERT(-1 < rc);
             ASSERT(reader.isOpen());
             ASSERT(reader.nodeType() == balxml::Reader::e_NODE_TYPE_NONE);
@@ -1369,7 +1628,7 @@ int main(int argc, char *argv[])
               "    </Node0>\n"
               "</xs:schema>";
 
-            int rc = reader.open(xmlStr, bsl::strlen(xmlStr));
+            int rc = reader.open(xmlStr, k_xmlStrLen);
             ASSERT(-1 < rc);
             ASSERT(reader.isOpen());
             ASSERT(reader.nodeType() == balxml::Reader::e_NODE_TYPE_NONE);
@@ -1391,6 +1650,50 @@ int main(int argc, char *argv[])
                         !bsl::strcmp(reader.nodeName(), "xs:schema"));
 
             reader.close();
+        }
+
+        if (veryVerbose) bsl::cout << "\nTests large xml (*8K+)."
+                                      "\n- - - - - - - - - - - -"
+                                   << bsl::endl;
+        {
+            bsl::string xmlStr =
+              "<?xml version='1.0' encoding='UTF-8'?>\n"
+              "<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'\n"
+              "    elementFormDefault='qualified'\n"
+              "    xmlns:bdem='http://bloomberg.com/schemas/bdem'\n"
+              "    bdem:package='bascfg'>\n"
+              "<Node0>\n"
+              "    <Element1>";
+
+            xmlStr += bsl::string(12 * 1024, 'b');
+
+            xmlStr += "</Element1>\n"
+              "    <Element2>element2</Element2>\n"
+              "    <Element3>element3</Element3>\n"
+              "</Node0>\n"
+              "</xs:schema>";
+            const IntPtr xmlSize = xmlStr.size();
+
+            bdlsb::FixedMemInStreamBuf isb(xmlStr.c_str(), xmlStr.size());
+
+            int rc = reader.open(&isb);
+            ASSERT(-1 < rc);
+            ASSERT(reader.isOpen());
+            ASSERT(reader.nodeType() == balxml::Reader::e_NODE_TYPE_NONE);
+
+            advanceN(reader, 2);  // XML declaration --> <xs:schema>
+
+            // Skip to end node
+
+            LOOP_ASSERT(rc, (rc = reader.advanceToEndNodeRawBare()) == 0); //<<
+
+            ASSERT(reader.nodeType() ==
+                                      balxml::Reader::e_NODE_TYPE_END_ELEMENT);
+            ASSERT(!bsl::strcmp(reader.nodeName(), "xs:schema"));
+
+            reader.close();
+            ASSERTV(xmlSize, reader.getCurrentPosition(),
+                                       xmlSize == reader.getCurrentPosition());
         }
       } break;
 
@@ -2625,7 +2928,7 @@ int main(int argc, char *argv[])
                                << "===========================\n" << bsl::endl;
 
         {
-            static const string xmlStr =
+            static const bsl::string xmlStr =
                 "<?xml version='1.0' encoding='UTF-8'?>\n"
                 "<!-- RCSId_bascfg_xsd = \"$Id: $\" -->\n"
                 "<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'\n"
@@ -2708,7 +3011,7 @@ int main(int argc, char *argv[])
         {
             const char *CDATA_STR = "<![CDATA[S & P]]>";
 
-            static const string xmlStr =
+            static const bsl::string xmlStr =
                 "<?xml version='1.0' encoding='UTF-8'?>\n"
                 "<!-- RCSId_bascfg_xsd = \"$Id: $\" -->\n"
                 "<xs:schema xmlns:xs='http://www.w3.org/2001/XMLSchema'\n"
@@ -4156,6 +4459,7 @@ int main(int argc, char *argv[])
         rc = parseAndProcess(&reader);
         if (veryVerbose) bsl::cout << "Reader parse: " << rc << bsl::endl;
         reader.close();
+        ASSERT(1 == reader.getColumnNumber());
 
       } break;
       default: {

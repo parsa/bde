@@ -29,8 +29,6 @@ BSLS_IDENT_RCSID(balber_berutil_cpp, "$Id$ $CSID$")
 
 #include <bdldfp_decimalconvertutil.h>
 
-#include <bslmf_assert.h>
-
 #include <bslmt_once.h>
 
 #include <bsls_assert.h>
@@ -41,9 +39,11 @@ BSLS_IDENT_RCSID(balber_berutil_cpp, "$Id$ $CSID$")
 #include <bsl_cstdint.h>
 #include <bsl_cstring.h>
 
-namespace BloombergLP {
-namespace balber {
 namespace {
+namespace u {
+
+typedef BloombergLP::bsls::Types::Uint64           Uint64;
+typedef BloombergLP::balber::BerDecoderOptions     BerDecoderOptions;
 
                    // ======================================
                    // struct BerUtil_64BitFloatingPointMasks
@@ -58,10 +58,10 @@ struct BerUtil_64BitFloatingPointMasks {
     // too large to be used as enumerators on some platforms.
 
     // CLASS DATA
-    static const bsls::Types::Uint64 k_DOUBLE_EXPONENT_MASK;
-    static const bsls::Types::Uint64 k_DOUBLE_MANTISSA_MASK;
-    static const bsls::Types::Uint64 k_DOUBLE_MANTISSA_IMPLICIT_ONE_MASK;
-    static const bsls::Types::Uint64 k_DOUBLE_SIGN_MASK;
+    static const u::Uint64 k_DOUBLE_EXPONENT_MASK;
+    static const u::Uint64 k_DOUBLE_MANTISSA_MASK;
+    static const u::Uint64 k_DOUBLE_MANTISSA_IMPLICIT_ONE_MASK;
+    static const u::Uint64 k_DOUBLE_SIGN_MASK;
 };
 
                    // --------------------------------------
@@ -69,22 +69,38 @@ struct BerUtil_64BitFloatingPointMasks {
                    // --------------------------------------
 
 // CLASS DATA
-const bsls::Types::Uint64
-    BerUtil_64BitFloatingPointMasks::k_DOUBLE_EXPONENT_MASK =
-        0x7FF0000000000000ULL;
+const u::Uint64 BerUtil_64BitFloatingPointMasks::k_DOUBLE_EXPONENT_MASK =
+                                                         0x7FF0000000000000ULL;
 
-const bsls::Types::Uint64
-    BerUtil_64BitFloatingPointMasks::k_DOUBLE_MANTISSA_MASK =
-        0x000FFFFFFFFFFFFFULL;
+const u::Uint64 BerUtil_64BitFloatingPointMasks::k_DOUBLE_MANTISSA_MASK =
+                                                         0x000FFFFFFFFFFFFFULL;
 
-const bsls::Types::Uint64
-    BerUtil_64BitFloatingPointMasks::k_DOUBLE_MANTISSA_IMPLICIT_ONE_MASK =
-        0x0010000000000000ULL;
+const u::Uint64 BerUtil_64BitFloatingPointMasks::
+                                          k_DOUBLE_MANTISSA_IMPLICIT_ONE_MASK =
+                                                         0x0010000000000000ULL;
 
-const bsls::Types::Uint64 BerUtil_64BitFloatingPointMasks::k_DOUBLE_SIGN_MASK =
-    0x8000000000000000ULL;
+const u::Uint64 BerUtil_64BitFloatingPointMasks::k_DOUBLE_SIGN_MASK =
+                                                         0x8000000000000000ULL;
 
+// FREE FUNCTIONS
+void warnOnce()
+    // The first time this is called, issue an explanatory warning.
+{
+    BSLMT_ONCE_DO {
+        BSLS_LOG_WARN(
+            "[BDE_INTERNAL] The current process will decode an empty string"
+            " as the default value for an element in the type currently being"
+            " decoded.  This behavior is erroneous and will eventually be"
+            " deprecated.  The owners of the current process should be"
+            " contacted to audit it for dependence on this behavior.");
+    }
+}
+
+}  // close namespace u
 }  // close unnamed namespace
+
+namespace BloombergLP {
+namespace balber {
 
                                // --------------
                                // struct BerUtil
@@ -325,7 +341,8 @@ int BerUtil_LengthImpUtil::getEndOfContentOctets(
 
 // Length Encoding Functions
 
-int BerUtil_LengthImpUtil::putLength(bsl::streambuf *streamBuf, int length)
+int BerUtil_LengthImpUtil::putLength(bsl::streambuf      *streamBuf,
+                                     int                  length)
 {
     enum { SUCCESS = 0, FAILURE = -1 };
 
@@ -361,6 +378,7 @@ int BerUtil_LengthImpUtil::putLength(bsl::streambuf *streamBuf, int length)
 int BerUtil_LengthImpUtil::putIndefiniteLengthOctet(bsl::streambuf *streamBuf)
 {
     // Extra unsigned char cast needed to suppress warning on Windows.
+
     int writtenOctet = streamBuf->sputc(static_cast<char>(
         static_cast<unsigned char>(k_INDEFINITE_LENGTH_OCTET)));
 
@@ -674,7 +692,7 @@ void BerUtil_FloatingPointImpUtil::assembleDouble(double    *value,
                                                   long long  mantissa,
                                                   int        sign)
 {
-    typedef BerUtil_64BitFloatingPointMasks WideBitMasks;
+    typedef u::BerUtil_64BitFloatingPointMasks WideBitMasks;
 
     unsigned long long longLongValue;
 
@@ -694,7 +712,7 @@ void BerUtil_FloatingPointImpUtil::normalizeMantissaAndAdjustExp(
                                                        int       *exponent,
                                                        bool       denormalized)
 {
-    typedef BerUtil_64BitFloatingPointMasks WideBitMasks;
+    typedef u::BerUtil_64BitFloatingPointMasks WideBitMasks;
 
     if (!denormalized) {
         // If number is not denormalized then need to prefix with implicit one.
@@ -717,7 +735,7 @@ void BerUtil_FloatingPointImpUtil::parseDouble(int       *exponent,
                                                int       *sign,
                                                double     value)
 {
-    typedef BerUtil_64BitFloatingPointMasks WideBitMasks;
+    typedef u::BerUtil_64BitFloatingPointMasks WideBitMasks;
 
     unsigned long long longLongValue;
     bsl::memcpy(&longLongValue, &value, sizeof(unsigned long long));
@@ -746,19 +764,41 @@ int BerUtil_FloatingPointImpUtil::getDoubleValue(double         *value,
 
     int nextOctet = streamBuf->sbumpc();
 
-    if (k_POSITIVE_INFINITY_ID == nextOctet) {
-        assembleDouble(
-            value, k_DOUBLE_INFINITY_EXPONENT_ID, k_INFINITY_MANTISSA_ID, 0);
-        return SUCCESS;                                               // RETURN
-    }
-    else if (k_NEGATIVE_INFINITY_ID == nextOctet) {
-        assembleDouble(
-            value, k_DOUBLE_INFINITY_EXPONENT_ID, k_INFINITY_MANTISSA_ID, 1);
-        return SUCCESS;                                               // RETURN
-    }
-    else if (k_NAN_ID == nextOctet) {
-        assembleDouble(value, k_DOUBLE_INFINITY_EXPONENT_ID, 1, 0);
-        return SUCCESS;                                               // RETURN
+    if (1 == length) {
+        switch (nextOctet) {
+          case k_POSITIVE_INFINITY_ID: {
+            assembleDouble(value,
+                           k_DOUBLE_INFINITY_EXPONENT_ID,
+                           k_INFINITY_MANTISSA_ID,
+                           0);
+
+            return SUCCESS;                                           // RETURN
+          } break;
+          case k_NEGATIVE_INFINITY_ID: {
+            assembleDouble(value,
+                           k_DOUBLE_INFINITY_EXPONENT_ID,
+                           k_INFINITY_MANTISSA_ID,
+                           1);
+
+            return SUCCESS;                                           // RETURN
+          } break;
+          case k_NAN_ID: {
+            assembleDouble(value,
+                           k_DOUBLE_INFINITY_EXPONENT_ID,
+                           1,
+                           0);
+
+            return SUCCESS;                                           // RETURN
+          } break;
+          case k_NEGATIVE_ZERO_ID: {
+            *value = -0.0;
+
+            return SUCCESS;                                           // RETURN
+          } break;
+          default: {
+            ; // do nothing
+          }
+        }
     }
 
     if (!(nextOctet & static_cast<unsigned char>(k_REAL_BINARY_ENCODING))) {
@@ -828,7 +868,7 @@ int BerUtil_FloatingPointImpUtil::getDoubleValue(double         *value,
         // Shift the mantissa left by shift amount, account for the implicit
         // one, and then removing it.
 
-        typedef BerUtil_64BitFloatingPointMasks WideBitMasks;
+        typedef u::BerUtil_64BitFloatingPointMasks WideBitMasks;
         mantissa <<= shift + 1;
         mantissa &= ~WideBitMasks::k_DOUBLE_MANTISSA_IMPLICIT_ONE_MASK;
     }
@@ -892,15 +932,24 @@ int BerUtil_FloatingPointImpUtil::putDecimal64Value(
     return 0;
 }
 
-int BerUtil_FloatingPointImpUtil::putDoubleValue(bsl::streambuf *streamBuf,
-                                                 double          value)
+int BerUtil_FloatingPointImpUtil::putDoubleValue(
+                                            bsl::streambuf          *streamBuf,
+                                            double                   value,
+                                            const BerEncoderOptions *options)
 {
     enum { SUCCESS = 0, FAILURE = -1 };
 
     // If 0 == value, put out length = 0 and return.
 
     if (0.0 == value) {
-        return 0 == streamBuf->sputc(0) ? SUCCESS : FAILURE;          // RETURN
+        static const char negativeZeroSeq[] = { k_NEGATIVE_ZERO_LEN,
+                                                k_NEGATIVE_ZERO_ID };
+
+        bool ok = (options && options->preserveSignOfNegativeZero()) &&
+                                                    bdlb::Float::signBit(value)
+                ? 2 == streamBuf->sputn(negativeZeroSeq, 2)
+                : k_POSITIVE_ZERO_LEN == streamBuf->sputc(k_POSITIVE_ZERO_LEN);
+        return ok ? SUCCESS : FAILURE;                                // RETURN
     }
 
     // Else parse double value.
@@ -1011,7 +1060,7 @@ int BerUtil_StringImpUtil::putChars(bsl::streambuf *streamBuf,
     return 0;
 }
 
-// 'bsl::string' Decoding
+// '*::string' Decoding
 
 int BerUtil_StringImpUtil::getStringValue(bsl::string              *value,
                                           bsl::streambuf           *streamBuf,
@@ -1020,16 +1069,7 @@ int BerUtil_StringImpUtil::getStringValue(bsl::string              *value,
 {
     if (0 == length) {
         if (options.defaultEmptyStrings() && !value->empty()) {
-            BSLMT_ONCE_DO
-            {
-                BSLS_LOG_WARN("[BDE_INTERNAL] The current process will decode "
-                              "an empty string as the default value for an "
-                              "element in the type currently being decoded.  "
-                              "This behavior is erroneous and will eventually "
-                              "be deprecated.  The owners of the current "
-                              "process should be contacted to audit it for "
-                              "dependence on this behavior.");
-            }
+            u::warnOnce();
         }
 
         if (!options.defaultEmptyStrings()) {
@@ -1045,7 +1085,7 @@ int BerUtil_StringImpUtil::getStringValue(bsl::string              *value,
     value->resize(length);
 
     const bsl::streamsize bytesConsumed =
-        streamBuf->sgetn(&(*value)[0], length);
+                                        streamBuf->sgetn(&(*value)[0], length);
     if (length != bytesConsumed) {
         return -1;                                                    // RETURN
     }
@@ -1333,6 +1373,7 @@ int BerUtil_DateImpUtil::putCompactBinaryDateValue(
                                             const BerEncoderOptions *options)
 {
     BSLS_ASSERT_SAFE(0 == value.offset());
+
     return putCompactBinaryDateValue(streamBuf, value.localDate(), options);
 }
 
@@ -1370,7 +1411,9 @@ int BerUtil_DateImpUtil::putCompactBinaryDateTzValue(
         }
 
         return IntegerUtil::putIntegerGivenLength(
-            streamBuf, daysSinceEpoch, length - TimezoneUtil::k_TIMEZONE_LENGTH);
+                                     streamBuf,
+                                     daysSinceEpoch,
+                                     length - TimezoneUtil::k_TIMEZONE_LENGTH);
                                                                       // RETURN
     }
 
@@ -1443,10 +1486,10 @@ int BerUtil_DateImpUtil::putDateValue(bsl::streambuf          *streamBuf,
 
     switch (selectDateEncoding(value, options)) {
       case DateEncoding::e_ISO8601_DATE: {
-        return putIso8601DateValue(streamBuf, value, options);
+        return putIso8601DateValue(streamBuf, value, options);        // RETURN
       } break;
       case DateEncoding::e_COMPACT_BINARY_DATE: {
-        return putCompactBinaryDateValue(streamBuf, value, options);
+        return putCompactBinaryDateValue(streamBuf, value, options);  // RETURN
       } break;
     }
 
@@ -1454,7 +1497,7 @@ int BerUtil_DateImpUtil::putDateValue(bsl::streambuf          *streamBuf,
 #if BSLA_UNREACHABLE_IS_ACTIVE
     BSLA_UNREACHABLE;
 #else
-    return -1;                                                        // RETURN
+    return -1;
 #endif
 }
 
@@ -1753,6 +1796,7 @@ int BerUtil_TimeImpUtil::putCompactBinaryTimeTzValue(
 
         return IntegerUtil::putIntegerGivenLength(
             streamBuf, serialTime, length - TimezoneUtil::k_TIMEZONE_LENGTH);
+                                                                      // RETURN
     }
 
     if (0 != LengthUtil::putLength(streamBuf, length)) {
@@ -1837,7 +1881,7 @@ int BerUtil_DatetimeImpUtil::millisecondsSinceEpochToDatetime(
         static_cast<int>(millisecondsSinceEpoch -
                          daysSinceEpoch * Ratio::k_MILLISECONDS_PER_DAY);
 
-    int hour = millisecondsSinceMidnight / Ratio::k_MILLISECONDS_PER_HOUR;
+    int hour = millisecondsSinceMidnight / Ratio::k_MILLISECONDS_PER_HOUR_32;
 
     const int minute = (millisecondsSinceMidnight -
                         hour * Ratio::k_MILLISECONDS_PER_HOUR_32) /

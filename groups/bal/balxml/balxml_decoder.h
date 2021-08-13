@@ -263,6 +263,7 @@ BSLS_IDENT("$Id: $")
 #include <balxml_typesparserutil.h>
 #include <balxml_errorinfo.h>
 #include <balxml_reader.h>
+#include <balxml_utf8readerwrapper.h>
 
 #include <bdlat_arrayfunctions.h>
 #include <bdlat_choicefunctions.h>
@@ -395,9 +396,10 @@ class Decoder {
     };
 
     // DATA
-    const DecoderOptions     *d_options;        // held, not owned
-    Reader                   *d_reader;         // held, not owned
-    ErrorInfo                *d_errorInfo;      // held, not owned
+    const DecoderOptions            *d_options;        // held, not owned
+    Utf8ReaderWrapper                d_utf8ReaderWrapper;
+    Reader                          *d_reader;         // held, not owned
+    ErrorInfo                       *d_errorInfo;      // held, not owned
 
     bslma::Allocator                *d_allocator;      // held, not owned
 
@@ -437,7 +439,7 @@ class Decoder {
     int  checkForReaderErrors();
     int  checkForErrors(const ErrorInfo& errInfo);
 
-    void setDecoderError(ErrorInfo::Severity severity, bslstl::StringRef msg);
+    void setDecoderError(ErrorInfo::Severity severity, bsl::string_view msg);
 
     int  readTopElement();
     int  parse(Decoder_ElementContext *context);
@@ -645,8 +647,8 @@ class Decoder_ErrorLogger {
         // stream.
     {
         d_decoder->setDecoderError(d_severity,
-                                   bslstl::StringRef(d_stream.data(),
-                                                     d_stream.length()));
+                                   bsl::string_view(d_stream.data(),
+                                                    d_stream.length()));
     }
 
     bsl::ostream& stream()

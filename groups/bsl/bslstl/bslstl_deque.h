@@ -420,13 +420,14 @@ BSL_OVERRIDES_STD mode"
 #include <bslmf_matcharithmetictype.h>
 #include <bslmf_movableref.h>
 #include <bslmf_nil.h>
+#include <bslmf_util.h>    // 'forward(V)'
 
 #include <bsls_assert.h>
 #include <bsls_compilerfeatures.h>
 #include <bsls_keyword.h>
 #include <bsls_nativestd.h>
 #include <bsls_performancehint.h>
-#include <bsls_util.h>
+#include <bsls_util.h>     // 'forward<T>(V)'
 
 #include <cstring>
 
@@ -592,7 +593,7 @@ class Deque_Base {
 
     reference at(size_type position);
         // Return a reference providing modifiable access to the element at the
-        // specified 'position' in this deque.  Throw a 'bsl::out_of_range'
+        // specified 'position' in this deque.  Throw a 'std::out_of_range'
         // exception if 'position >= size()'.
 
     reference front();
@@ -655,7 +656,7 @@ class Deque_Base {
 
     const_reference at(size_type position) const;
         // Return a reference providing non-modifiable access to the element at
-        // the specified 'position' in this deque.  Throw a 'bsl::out_of_range'
+        // the specified 'position' in this deque.  Throw a 'std::out_of_range'
         // exception if 'position >= size()'.
 
     const_reference front() const;

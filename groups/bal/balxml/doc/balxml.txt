@@ -10,20 +10,34 @@
  XSD.  Clients can use the components provided by 'balxml' for parsing and
  printing fundamental types, XML schema, and XML data documents.
 
+/Code Generation
+/---------------
+ The script 'code_from_xsd.pl' will automatically generate several components
+ from the file 'balxml.xsd'.  It will refuse to run in the 'balxml' source
+ directory.  Create a separate, temporary directory and copy 'balxml.xsd' and
+ 'code_from_xsd.sh' into it, 'cd' into that directory, and run
+ 'code_from_xsd.sh' there will no command-line arguments.
+
+ Note that the 'balxml_encodingstyle' component will need hand-editing due to
+ redundant, synonymous enum values.
+
 /Hierarchical Synopsis
 /---------------------
- The 'balxml' package currently has 20 components having 6 levels of physical
+ The 'balxml' package currently has 24 components having 6 levels of physical
  dependency.  The list below shows the hierarchical ordering of the components.
  The order of components within each level is not architecturally significant,
  just alphabetical.
 ..
   6. balxml_decoder
+     balxml_encoder
 
-  5. balxml_encoder
+  5. balxml_formatter
      balxml_minireader
+     balxml_utf8readerwrapper
      balxml_validatingreader
 
-  4. balxml_formatter
+  4. balxml_formatter_compactimpl                                     !PRIVATE!
+     balxml_formatter_prettyimpl                                      !PRIVATE!
      balxml_reader
      balxml_typesparserutil
 
@@ -38,6 +52,7 @@
      balxml_decoderoptions
      balxml_encodingstyle
      balxml_errorinfo
+     balxml_formatterwhitespacetype
      balxml_hexparser
      balxml_listparser
      balxml_namespaceregistry
@@ -56,7 +71,7 @@
 :      Provide a generic translation from XML into C++ objects.
 :
 : 'balxml_decoderoptions':
-:      Provide value-semantic attribute classes.
+:      Provide value-semantic attribute classes
 :
 : 'balxml_elementattribute':
 :      Provide the properties of an attribute in an XML element tag.
@@ -65,16 +80,25 @@
 :      Provide an XML encoder utility.
 :
 : 'balxml_encoderoptions':
-:      Provide value-semantic attribute classes.
+:      Provide value-semantic attribute classes
 :
 : 'balxml_encodingstyle':
-:      Provide value-semantic attribute classes.
+:      Provide value-semantic attribute classes
 :
 : 'balxml_errorinfo':
 :      Provide common error information for XML components.
 :
 : 'balxml_formatter':
 :      Provide a simple interface for writing formatted XML.
+:
+: 'balxml_formatter_compactimpl':                                     !PRIVATE!
+:      Provide a minimal-whitespace implementation for 'balxml_formatter'.
+:
+: 'balxml_formatter_prettyimpl':                                      !PRIVATE!
+:      Provide pretty-printing implementation for 'balxml_formatter'.
+:
+: 'balxml_formatterwhitespacetype':
+:      Enumerate the set of whitespace options for 'balxml_formatter'.
 :
 : 'balxml_hexparser':
 :      Provide push parser for hex types.
@@ -99,6 +123,9 @@
 :
 : 'balxml_typesprintutil':
 :      Provide a utility for printing types using XML formatting.
+:
+: 'balxml_utf8readerwrapper':
+:      Provide wrapper for 'Reader' to check input UTF-8 validity.
 :
 : 'balxml_util':
 :      Provide a suite of common XML utilities.
