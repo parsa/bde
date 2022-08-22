@@ -12835,101 +12835,101 @@ void TestConfigurationMacros()
 
 //======================= LEVEL_ASSUME_OPT LEVEL_NONE =======================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERT_MACRORESET
-#include <bsls_assert_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERT_MACRORESET
+// #include <bsls_assert_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSUME_OPT
-#define BSLS_REVIEW_LEVEL_NONE
+// #define BSLS_ASSERT_LEVEL_ASSUME_OPT
+// #define BSLS_REVIEW_LEVEL_NONE
 
-// [3] Re-include the 'bsls_assert.h' header.
+// // [3] Re-include the 'bsls_assert.h' header.
 
-#include <bsls_assert.h>
+// #include <bsls_assert.h>
 
-// [4] Test the 'IS_ACTIVE', 'IS_REVIEW', and 'IS_ASSUMED' macros
+// // [4] Test the 'IS_ACTIVE', 'IS_REVIEW', and 'IS_ASSUMED' macros
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_REVIEW)
-#error BSLS_ASSERT_OPT_IS_REVIEW should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_REVIEW)
+// #error BSLS_ASSERT_OPT_IS_REVIEW should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_ASSUMED)
-#error BSLS_ASSERT_OPT_IS_ASSUMED should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_ASSUMED)
+// #error BSLS_ASSERT_OPT_IS_ASSUMED should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_REVIEW)
-#error BSLS_ASSERT_IS_REVIEW should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_REVIEW)
+// #error BSLS_ASSERT_IS_REVIEW should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ASSUMED)
-#error BSLS_ASSERT_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ASSUMED)
+// #error BSLS_ASSERT_IS_ASSUMED should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_REVIEW)
-#error BSLS_ASSERT_SAFE_IS_REVIEW should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_REVIEW)
+// #error BSLS_ASSERT_SAFE_IS_REVIEW should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ASSUMED)
-#error BSLS_ASSERT_SAFE_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ASSUMED)
+// #error BSLS_ASSERT_SAFE_IS_ASSUMED should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public assert and review macros have the expected effect.
+// // [5] Test that the public assert and review macros have the expected effect.
 
-    // BSLS_ASSERT_OPT(false); is undefined behavior
+//     // BSLS_ASSERT_OPT(false); is undefined behavior
 
-    try { BSLS_ASSERT(false);           ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT(false);           ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_ASSERT_SAFE(false);      ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT_SAFE(false);      ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_ASSERT_INVOKE("false");  ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT_INVOKE("false");  ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_OPT(false);       ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_OPT(false);       ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_INVOKE("false");  ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(true);  }
+//     try { BSLS_REVIEW_INVOKE("false");  ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(true);  }
 
 //===================== LEVEL_ASSUME_ASSERT LEVEL_NONE ======================//
 
@@ -13623,303 +13623,303 @@ void TestConfigurationMacros()
 
 //==================== LEVEL_ASSUME_OPT LEVEL_REVIEW_OPT ====================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERT_MACRORESET
-#include <bsls_assert_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERT_MACRORESET
+// #include <bsls_assert_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSUME_OPT
-#define BSLS_REVIEW_LEVEL_REVIEW_OPT
+// #define BSLS_ASSERT_LEVEL_ASSUME_OPT
+// #define BSLS_REVIEW_LEVEL_REVIEW_OPT
 
-// [3] Re-include the 'bsls_assert.h' header.
+// // [3] Re-include the 'bsls_assert.h' header.
 
-#include <bsls_assert.h>
+// #include <bsls_assert.h>
 
-// [4] Test the 'IS_ACTIVE', 'IS_REVIEW', and 'IS_ASSUMED' macros
+// // [4] Test the 'IS_ACTIVE', 'IS_REVIEW', and 'IS_ASSUMED' macros
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_REVIEW)
-#error BSLS_ASSERT_OPT_IS_REVIEW should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_REVIEW)
+// #error BSLS_ASSERT_OPT_IS_REVIEW should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ASSUMED)
-#error BSLS_ASSERT_OPT_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ASSUMED)
+// #error BSLS_ASSERT_OPT_IS_ASSUMED should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_REVIEW)
-#error BSLS_ASSERT_IS_REVIEW should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_REVIEW)
+// #error BSLS_ASSERT_IS_REVIEW should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ASSUMED)
-#error BSLS_ASSERT_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ASSUMED)
+// #error BSLS_ASSERT_IS_ASSUMED should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_REVIEW)
-#error BSLS_ASSERT_SAFE_IS_REVIEW should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_REVIEW)
+// #error BSLS_ASSERT_SAFE_IS_REVIEW should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ASSUMED)
-#error BSLS_ASSERT_SAFE_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ASSUMED)
+// #error BSLS_ASSERT_SAFE_IS_ASSUMED should not be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public assert and review macros have the expected effect.
+// // [5] Test that the public assert and review macros have the expected effect.
 
-    try { BSLS_ASSERT_OPT(false);       ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(true);  }
+//     try { BSLS_ASSERT_OPT(false);       ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(true);  }
 
-    try { BSLS_ASSERT(false);           ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT(false);           ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_ASSERT_SAFE(false);      ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT_SAFE(false);      ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_ASSERT_INVOKE("false");  ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT_INVOKE("false");  ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_OPT(false);       ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(true);  }
+//     try { BSLS_REVIEW_OPT(false);       ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(true);  }
 
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_INVOKE("false");  ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(true);  }
+//     try { BSLS_REVIEW_INVOKE("false");  ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(true);  }
 
 //================== LEVEL_ASSUME_ASSERT LEVEL_REVIEW_OPT ===================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERT_MACRORESET
-#include <bsls_assert_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERT_MACRORESET
+// #include <bsls_assert_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSUME_ASSERT
-#define BSLS_REVIEW_LEVEL_REVIEW_OPT
+// #define BSLS_ASSERT_LEVEL_ASSUME_ASSERT
+// #define BSLS_REVIEW_LEVEL_REVIEW_OPT
 
-// [3] Re-include the 'bsls_assert.h' header.
+// // [3] Re-include the 'bsls_assert.h' header.
 
-#include <bsls_assert.h>
+// #include <bsls_assert.h>
 
-// [4] Test the 'IS_ACTIVE', 'IS_REVIEW', and 'IS_ASSUMED' macros
+// // [4] Test the 'IS_ACTIVE', 'IS_REVIEW', and 'IS_ASSUMED' macros
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_REVIEW)
-#error BSLS_ASSERT_OPT_IS_REVIEW should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_REVIEW)
+// #error BSLS_ASSERT_OPT_IS_REVIEW should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ASSUMED)
-#error BSLS_ASSERT_OPT_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ASSUMED)
+// #error BSLS_ASSERT_OPT_IS_ASSUMED should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_REVIEW)
-#error BSLS_ASSERT_IS_REVIEW should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_REVIEW)
+// #error BSLS_ASSERT_IS_REVIEW should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ASSUMED)
-#error BSLS_ASSERT_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ASSUMED)
+// #error BSLS_ASSERT_IS_ASSUMED should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_REVIEW)
-#error BSLS_ASSERT_SAFE_IS_REVIEW should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_REVIEW)
+// #error BSLS_ASSERT_SAFE_IS_REVIEW should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ASSUMED)
-#error BSLS_ASSERT_SAFE_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ASSUMED)
+// #error BSLS_ASSERT_SAFE_IS_ASSUMED should not be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public assert and review macros have the expected effect.
+// // [5] Test that the public assert and review macros have the expected effect.
 
-    try { BSLS_ASSERT_OPT(false);       ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(true);  }
+//     try { BSLS_ASSERT_OPT(false);       ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(true);  }
 
-    try { BSLS_ASSERT(false);           ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT(false);           ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_ASSERT_SAFE(false);      ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT_SAFE(false);      ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_ASSERT_INVOKE("false");  ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT_INVOKE("false");  ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_OPT(false);       ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(true);  }
+//     try { BSLS_REVIEW_OPT(false);       ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(true);  }
 
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_INVOKE("false");  ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(true);  }
+//     try { BSLS_REVIEW_INVOKE("false");  ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(true);  }
 
 //=================== LEVEL_ASSUME_SAFE LEVEL_REVIEW_OPT ====================//
 
-// [1] Reset all configuration macros
+// // [1] Reset all configuration macros
 
-#undef INCLUDED_BSLS_ASSERT_MACRORESET
-#include <bsls_assert_macroreset.h>
+// #undef INCLUDED_BSLS_ASSERT_MACRORESET
+// #include <bsls_assert_macroreset.h>
 
-// [2] Define the macros for this test case.
+// // [2] Define the macros for this test case.
 
-#define BSLS_ASSERT_LEVEL_ASSUME_SAFE
-#define BSLS_REVIEW_LEVEL_REVIEW_OPT
+// #define BSLS_ASSERT_LEVEL_ASSUME_SAFE
+// #define BSLS_REVIEW_LEVEL_REVIEW_OPT
 
-// [3] Re-include the 'bsls_assert.h' header.
+// // [3] Re-include the 'bsls_assert.h' header.
 
-#include <bsls_assert.h>
+// #include <bsls_assert.h>
 
-// [4] Test the 'IS_ACTIVE', 'IS_REVIEW', and 'IS_ASSUMED' macros
+// // [4] Test the 'IS_ACTIVE', 'IS_REVIEW', and 'IS_ASSUMED' macros
 
-#if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
-#error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ACTIVE)
+// #error BSLS_ASSERT_OPT_IS_ACTIVE should not be defined
+// #endif
 
-#if !defined(BSLS_ASSERT_OPT_IS_REVIEW)
-#error BSLS_ASSERT_OPT_IS_REVIEW should be defined
-#endif
+// #if !defined(BSLS_ASSERT_OPT_IS_REVIEW)
+// #error BSLS_ASSERT_OPT_IS_REVIEW should be defined
+// #endif
 
-#if defined(BSLS_ASSERT_OPT_IS_ASSUMED)
-#error BSLS_ASSERT_OPT_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_OPT_IS_ASSUMED)
+// #error BSLS_ASSERT_OPT_IS_ASSUMED should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ACTIVE)
-#error BSLS_ASSERT_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ACTIVE)
+// #error BSLS_ASSERT_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_REVIEW)
-#error BSLS_ASSERT_IS_REVIEW should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_REVIEW)
+// #error BSLS_ASSERT_IS_REVIEW should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_IS_ASSUMED)
-#error BSLS_ASSERT_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_IS_ASSUMED)
+// #error BSLS_ASSERT_IS_ASSUMED should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
-#error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ACTIVE)
+// #error BSLS_ASSERT_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_REVIEW)
-#error BSLS_ASSERT_SAFE_IS_REVIEW should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_REVIEW)
+// #error BSLS_ASSERT_SAFE_IS_REVIEW should not be defined
+// #endif
 
-#if defined(BSLS_ASSERT_SAFE_IS_ASSUMED)
-#error BSLS_ASSERT_SAFE_IS_ASSUMED should not be defined
-#endif
+// #if defined(BSLS_ASSERT_SAFE_IS_ASSUMED)
+// #error BSLS_ASSERT_SAFE_IS_ASSUMED should not be defined
+// #endif
 
-#if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
-#error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
-#endif
+// #if !defined(BSLS_REVIEW_OPT_IS_ACTIVE)
+// #error BSLS_REVIEW_OPT_IS_ACTIVE should be defined
+// #endif
 
-#if defined(BSLS_REVIEW_IS_ACTIVE)
-#error BSLS_REVIEW_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_IS_ACTIVE)
+// #error BSLS_REVIEW_IS_ACTIVE should not be defined
+// #endif
 
-#if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
-#error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
-#endif
+// #if defined(BSLS_REVIEW_SAFE_IS_ACTIVE)
+// #error BSLS_REVIEW_SAFE_IS_ACTIVE should not be defined
+// #endif
 
-// [5] Test that the public assert and review macros have the expected effect.
+// // [5] Test that the public assert and review macros have the expected effect.
 
-    try { BSLS_ASSERT_OPT(false);       ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(true);  }
+//     try { BSLS_ASSERT_OPT(false);       ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(true);  }
 
-    try { BSLS_ASSERT(false);           ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT(false);           ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_ASSERT_SAFE(false);      ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT_SAFE(false);      ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_ASSERT_INVOKE("false");  ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(true);  }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_ASSERT_INVOKE("false");  ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(true);  }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_OPT(false);       ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(true);  }
+//     try { BSLS_REVIEW_OPT(false);       ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(true);  }
 
-    try { BSLS_REVIEW(false);           ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW(false);           ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(false); }
+//     try { BSLS_REVIEW_SAFE(false);      ASSERT(true);  }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(false); }
 
-    try { BSLS_REVIEW_INVOKE("false");  ASSERT(false); }
-    catch(AssertFailed)               { ASSERT(false); }
-    catch(ReviewFailed)               { ASSERT(true);  }
+//     try { BSLS_REVIEW_INVOKE("false");  ASSERT(false); }
+//     catch(AssertFailed)               { ASSERT(false); }
+//     catch(ReviewFailed)               { ASSERT(true);  }
 
 //==================== LEVEL_ASSERT_OPT LEVEL_REVIEW_OPT ====================//
 
