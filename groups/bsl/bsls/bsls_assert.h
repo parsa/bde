@@ -1606,8 +1606,8 @@ BSLS_IDENT("$Id: $")
 // when used arbitrarily.  Because of this we do not attempt to leverage
 // assumption on GCC and leave the following commented out:
 //..
-// #define BSLS_ASSERT_ASSUME_IMP(X,LVL) if (!(X)) { __builtin_unreachable(); }
-// #define BSLS_ASSERT_ASSUME_ENABLED
+#define BSLS_ASSERT_ASSUME_IMP(X,LVL) if (!(X)) { __builtin_unreachable(); }
+#define BSLS_ASSERT_ASSUME_ENABLED
 //..
 
 #elif defined (BSLS_PLATFORM_CMP_MSVC)
